@@ -7,9 +7,12 @@
         <script type="text/javascript">
             var dataset = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ];
 			// Fixed variables
-			var h = 300;
+			var h = 300.;
 			var w = h * 1.9;
 			var stripe_h = h/dataset.length;
+			var union_flag_h = stripe_h*7.;
+			var union_flag_w = h*.76;
+			var star_r = stripe_h*2/5;
 			
 			// Setting up the canvas
 			var svg = d3.select("body")
@@ -35,12 +38,57 @@
 			// Flag - Union Flag
 			var union_flag = svg.append("svg:rect")
                 .attr("class", "union_flag")
-                .attr("width", h*.76)
-                .attr("height", stripe_h*7)
-                .style("fill", "#002C77");
+                .attr("width", union_flag_w)
+                .attr("height", union_flag_h)
+                .style("fill", "#002C77")
+                .on('click', moveStars);
             
             // Stars
+            var data_stars = [1, 1, 1, 1, 1, 1, 1, 1, 1];
             
+            var stars = svg.selectAll("circle")
+                .data(data_stars)
+                .enter()
+                .append("circle")
+                .attr("class", "star")
+                .attr("cy", function(d, i) {
+                    return Math.random()*union_flag_h;
+                })
+                .attr("cx", function(d, i) {
+                    return Math.random()*union_flag_w;
+                })
+                .attr("r", star_r)
+                .style("fill", "#fff");
+            
+            function moveStars() {
+                // Generate randomly a data set with 10 elements
+                data_stars = [];
+                for (var i=0; i<10; i+=1) {
+                    data_stars.push([Math.random()*union_flag_h, Math.random()*union_flag_w]);
+                }
+                // 
+                // stars.data(data_stars).enter()
+                //     .append("circle")
+                //     .attr("class", "star")
+                //     .attr("cy", stripe_h*7/2)
+                //     .attr("cx", function(d, i) {
+                //         return Math.random()*union_flag_w;
+                //     })
+                //     .attr("r", star_r)
+                //     .style("fill", "#fff");
+                    
+                console.log(data_stars);
+                
+                stars.data(data_stars)
+                    .transition()
+                    .duration(1000)
+                    .attr("cy", function(d, i) {
+                        return d[0];
+                    })
+                    .attr("cx", function(d, i) {
+                        return d[1];
+                    });
+            };
         </script>
     </body>
 </html>
