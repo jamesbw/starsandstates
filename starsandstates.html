@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<head> </head>
 <script src="d3.v2.min.js"></script>
 <style>
 
@@ -14,8 +15,12 @@
   stroke-width: 1.5px;
 }
 
-#states .active {
+#states .past {
   fill: steelblue;
+}
+
+#states .new {
+  fill: red;
 }
 
 </style>
@@ -54,11 +59,38 @@ d3.json("states_geo.json", function(json) {
       .attr("d", path)
 });
 
-function color_states(state_names) {
+function color_states(state_names, class_name) {
   g.selectAll("path")
-    .classed("active", function(d) { return state_names.indexOf(d.properties.name) > -1})
+    .classed(class_name, function(d) { return state_names.indexOf(d.properties.name) > -1})
+}
+
+
+var join_years;
+d3.json("join_years.json", function(json) { join_years = json})
+
+
+
+function map_callback(year) {
+  var past_states = join_years.filter( function(d) { return d.year < year})
+                              .map( function(d) {return d.states})
+                              .reduce( function(s1, s2){ return s1.concat(s2)}, [])
+
+  var new_states = join_years.filter( function(d) { return d.year === year})
+  if (new_states.length > 0)
+    new_states = new_states[0].states;
+  else
+    new_states = []
+
+  color_states(past_states, "past")
+  color_states(new_states, "new")
+}
+
+function flag_callback(year) {
+
 }
 
 
 
 </script>
+</body>
+</html>
