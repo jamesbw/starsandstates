@@ -41,7 +41,6 @@ svg.append("rect")
     .attr("class", "background")
     .attr("width", width)
     .attr("height", height)
-    .on("click", click);
 
 var g = svg.append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
@@ -53,7 +52,6 @@ d3.json("states_geo.json", function(json) {
       .data(json.features)
     .enter().append("path")
       .attr("d", path)
-      .on("click", click);
 });
 
 function color_states(state_names) {
@@ -61,28 +59,6 @@ function color_states(state_names) {
     .classed("active", function(d) { return state_names.indexOf(d.properties.name) > -1})
 }
 
-function click(d) {
-  var x = 0,
-      y = 0,
-      k = 1;
 
-  if (d && centered !== d) {
-    var centroid = path.centroid(d);
-    x = -centroid[0];
-    y = -centroid[1];
-    k = 4;
-    centered = d;
-  } else {
-    centered = null;
-  }
-
-  g.selectAll("path")
-      .classed("active", centered && function(d) { return d === centered; });
-
-  g.transition()
-      .duration(1000)
-      .attr("transform", "scale(" + k + ")translate(" + x + "," + y + ")")
-      .style("stroke-width", 1.5 / k + "px");
-}
 
 </script>
