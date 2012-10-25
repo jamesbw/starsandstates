@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Flag</title>
+        <script type="text/javascript" src="d3/d3.v2.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var dataset = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ];
+			// Fixed variables
+			var h = 300;
+			var w = h * 1.9;
+			var stripe_h = h/dataset.length;
+			
+			// Setting up the canvas
+			var svg = d3.select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+			
+			// Flag - Stripes
+			var stripes = svg.selectAll("rect.stripes")
+			    .data(dataset)
+                .enter()
+                .append("rect")
+                .attr("class", "stripes")
+                .attr("width", w)
+                .attr("height", stripe_h)
+                .style("fill", function(d, i) {
+                    return i % 2 ? "#fff" : "#CC0C2F";
+                })
+                .attr("y", function(d, i) {
+                    return i*stripe_h;
+                });
+                
+			// Flag - Union Flag
+			var union_flag = svg.append("svg:rect")
+                .attr("class", "union_flag")
+                .attr("width", h*.76)
+                .attr("height", stripe_h*7)
+                .style("fill", "#002C77");
+            
+            // Stars
+            
+        </script>
+    </body>
+</html>
