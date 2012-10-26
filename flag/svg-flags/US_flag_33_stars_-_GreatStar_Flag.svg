@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://inkscape.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="1330"
+   height="700"
+   id="Flag of the United States"
+   viewBox="0 0 18525 9750"
+   sodipodi:version="0.32"
+   inkscape:version="0.43"
+   sodipodi:docname="US_33_Star_GreatStar_ Flag.svg"
+   sodipodi:docbase="d:\Dateien\Wikipediazeugs\USA">
+  <metadata
+     id="metadata36">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs34" />
+  <sodipodi:namedview
+     inkscape:window-height="840"
+     inkscape:window-width="1050"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:zoom="0.60375615"
+     inkscape:cx="604.7821"
+     inkscape:cy="312.46256"
+     inkscape:window-x="82"
+     inkscape:window-y="52"
+     inkscape:current-layer="Flag of the United States" />
+  <rect
+     width="100%"
+     height="100%"
+     fill="#bf0a30"
+     id="red background" />
+  <g
+     fill="white"
+     id="g4">
+    <rect
+       width="100%"
+       height="750"
+       y="750"
+       id="rect6" />
+    <rect
+       width="100%"
+       height="750"
+       y="2250"
+       id="rect8" />
+    <rect
+       width="100%"
+       height="750"
+       y="3750"
+       id="rect10" />
+    <rect
+       width="100%"
+       height="750"
+       y="5250"
+       id="rect12" />
+    <rect
+       width="100%"
+       height="750"
+       y="6750"
+       id="rect14" />
+    <rect
+       width="100%"
+       height="750"
+       y="8250"
+       id="rect16" />
+  </g>
+  <rect
+     id="blue field"
+     width="6017.1431"
+     height="5250"
+     x="0"
+     y="-1.7763568e-013"
+     style="fill:#002868" />
+  <g
+     id="g1699"
+     transform="translate(-776.0131,35.81515)">
+    <g
+       transform="translate(5173.564,1570.321)"
+       id="g1357">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1359"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(4431.329,4000.936)"
+       id="g1361">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1363"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(1829.428,4025.406)"
+       id="g1365">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1367"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,1591.979,1257.88)"
+       id="g1542">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1544"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,1999.801,1788.047)"
+       id="g1546">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1548"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.852689,0.522419,-0.522419,0.852689,2633.252,1292.726)"
+       id="g1554">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1556"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.999856,1.694663e-2,-1.694663e-2,0.999856,1724.647,1532.435)"
+       id="g1558">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1560"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.60953,0.792763,-0.792763,0.60953,2674.508,2029.503)"
+       id="g1562">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1564"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.947436,0.319944,-0.319944,0.947436,2870.064,1711.699)"
+       id="g1566">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1568"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.580378,0.814347,-0.814347,0.580378,3880.216,1273.251)"
+       id="g1570">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1572"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(3178.88,160.3159)"
+       id="star row 9">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1529"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(3436.245,689.4265)"
+       id="g1534">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1536"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,3319.96,411.9674)"
+       id="g1538">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1540"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.941343,0.337452,-0.337452,0.941343,2899.832,1018.802)"
+       id="g1550">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1552"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.844555,0.535469,-0.535469,0.844555,3975.055,930.0303)"
+       id="g1574">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1576"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,1412.538,2668.942)"
+       id="g1578">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(284.142,97.17719,-97.17719,284.142,1559.069,-164.9683)"
+         id="polygon1580"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,3011.198,2187.713)"
+       id="g1582">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1584"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(3178.882,2288.086)"
+       id="g1586">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1588"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,5025.836,1274.192)"
+       id="g1594">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1596"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,3305.737,1302.638)"
+       id="g1598">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(284.142,97.17719,-97.17719,284.142,1559.069,-164.9683)"
+         id="polygon1600"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,2857.133,1612.582)"
+       id="g1602">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(284.142,97.17719,-97.17719,284.142,1559.069,-164.9683)"
+         id="polygon1604"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,2098.586,2656.605)"
+       id="g1606">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(284.142,97.17719,-97.17719,284.142,1559.069,-164.9683)"
+         id="polygon1608"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(4765.743,2002.611)"
+       id="g1610">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1612"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(3705.407,2434.902)"
+       id="g1614">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1616"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(2857.139,3495.238)"
+       id="g1618">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1620"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(3844.066,3756.244)"
+       id="g1622">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1624"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,4707.735,1943.02)"
+       id="g1626">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1628"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="translate(1894.68,3495.238)"
+       id="g1630">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1632"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,2839.913,3500.897)"
+       id="g1634">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1636"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,3851.31,3182.796)"
+       id="g1638">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1640"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.805763,0.592238,-0.592238,0.805763,4756.673,3239.892)"
+       id="g1642">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1644"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.956385,0.292111,-0.292111,0.956385,3563.982,2774.569)"
+       id="g1646">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1648"
+         style="fill:#ffffff" />
+    </g>
+    <g
+       transform="matrix(0.956385,0.292111,-0.292111,0.956385,4282.724,2796.871)"
+       id="g1650">
+      <polygon
+         points="0,-1 0.58778525,0.80901699 -0.95105652,-0.30901699 0.95105652,-0.30901699 -0.58778525,0.80901699 0,-1 "
+         transform="matrix(300.3,0,0,300.3,617.5,525)"
+         id="polygon1652"
+         style="fill:#ffffff" />
+    </g>
+  </g>
+</svg>
