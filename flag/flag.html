@@ -1,95 +1,168 @@
 <html>
-    <head>
-        <title>Flag</title>
-        <script type="text/javascript" src="d3/d3.v2.js"></script>
-    </head>
-    <body>
-        <script type="text/javascript">
-            var dataset = d3.range(13);
-			// Fixed variables
-			var h = 300.;
-			var w = h * 1.9;
-			var stripe_h = h/dataset.length;
-			var union_flag_h = stripe_h*7.;
-			var union_flag_w = h*.76;
-			var star_r = stripe_h*2/5;
-			
-			// Setting up the canvas
-			var svg = d3.select("body")
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h);
-			
-			// Flag - Stripes
-			var stripes = svg.selectAll("rect.stripes")
-			    .data(dataset)
-                .enter()
-                .append("rect")
-                .attr("class", "stripes")
-                .attr("width", w)
-                .attr("height", stripe_h)
-                .style("fill", function(d, i) {
-                    return i % 2 ? "#fff" : "#CC0C2F";
-                })
-                .attr("y", function(d, i) {
-                    return i*stripe_h;
-                });
-                
-			// Flag - Union Flag
-			var union_flag = svg.append("svg:rect")
-                .attr("class", "union_flag")
-                .attr("width", union_flag_w)
-                .attr("height", union_flag_h)
-                .style("fill", "#002C77")
-                .on('click', moveStars);
-            
-            // Stars
-            var number_of_stars = 10;
-            var data_stars = d3.range(number_of_stars);
-            
-            var stars = svg.selectAll("circle")
-                .data(data_stars)
-                .enter()
-                .append("circle")
-                .attr("class", "star")
-                .attr("cy", function(d, i) {
-                    return Math.random()*union_flag_h;
-                })
-                .attr("cx", function(d, i) {
-                    return Math.random()*union_flag_w;
-                })
-                .attr("r", star_r)
-                .style("fill", "#fff");
-            
-            function moveStars() {
-                // Generate randomly a data set with 10 elements
-                data_stars = [];
-                for (var i=0; i<number_of_stars; i+=1) {
-                    data_stars.push([Math.random()*union_flag_h, Math.random()*union_flag_w]);
-                }
-                // 
-                // stars.data(data_stars).enter()
-                //     .append("circle")
-                //     .attr("class", "star")
-                //     .attr("cy", stripe_h*7/2)
-                //     .attr("cx", function(d, i) {
-                //         return Math.random()*union_flag_w;
-                //     })
-                //     .attr("r", star_r)
-                //     .style("fill", "#fff");
-                    
-                console.log(data_stars);
-                
-                stars.data(data_stars)
-                    .transition()
-                    .duration(1000)
-                    .attr("cy", function(d, i) {
-                        return d[0];
-                    })
-                    .attr("cx", function(d, i) {
-                        return d[1];
-                    });
-            };
-        </script>
-    </body>
+<head>
+    <title>Flag</title>
+    <script type="text/javascript" src="d3/d3.v2.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+
+    /*
+    /* Setting up the canvas
+    /* * * * * * * * * * * * */
+
+    // Constant variables
+    var h = 400,
+    w = h * 1.9,
+    stripe_array = Array(13),
+    stripe_h = h/stripe_array.length,
+    union_flag_h = stripe_h*7.,
+    union_flag_w = h*.76,
+    star_r = stripe_h*1/125;
+
+    // Setting up the canvas
+    var svg = d3.select("body")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+    // Flag - Stripes
+    var stripes = svg.selectAll("rect.stripes")
+    .data(stripe_array)
+    .enter()
+    .append("rect")
+    .attr("class", "stripes")
+    .attr("width", w)
+    .attr("height", stripe_h)
+    .style("fill", function(d, i) {
+        return i % 2 ? "#fff" : "#CC0C2F";
+    })
+    .attr("y", function(d, i) {
+        return i*stripe_h;
+    });
+
+    // Flag - Union Flag
+    var union_flag = svg.append("svg:rect")
+    .attr("class", "union_flag")
+    .attr("width", union_flag_w)
+    .attr("height", union_flag_h)
+    .style("fill", "#002C77")
+    .on('click', moveStars);
+
+
+
+
+    /*
+    /* Building the star arrays
+    /* * * * * * * * * * * * * */
+
+    /* Each array contains 50 cells corresponding to the 50 stars.
+    Each star is represented by an array of length 5 defined by:
+    [x position, y position, scale, rotation, opacity] */
+
+    // Function to create a array of length l filled with values v
+    function newFilledArray(l, v) {
+        var a = new Array(l);
+        while (--l >= 0) {
+            a[l] = v;
+        }
+        return a;
+    }
+
+    // 13 stars
+    var flag_13 = newFilledArray(50, [0, 0, 1, 0, 0]);
+    build_flag_13 = function(a) {
+        var h_step = union_flag_w/6;
+        var v_step = union_flag_h/6;
+        for (var i = 0; i < 3; i += 1) {
+            a[i] = [(1 + 2*i)*h_step, v_step, 1, 0, 1];
+        }
+        for (var i = 0; i < 2; i += 1) {
+            a[3+i] = [(2 + 2*i)*h_step, 2*v_step, 1, 0, 1];
+        }
+        for (var i = 0; i < 3; i += 1) {
+            a[5+i] = [(1 + 2*i)*h_step, 3*v_step, 2, 45, 1];
+        }
+        for (var i = 0; i < 2; i += 1) {
+            a[8+i] = [(2 + 2*i)*h_step, 4*v_step, 1, 0, 1];
+        }
+        for (var i = 0; i < 3; i += 1) {
+            a[10+i] = [(1 + 2*i)*h_step, 5*v_step, 1, 0, 1];
+        }
+    };
+    build_flag_13(flag_13);
+
+    // 15 stars
+    var flag_15 = newFilledArray(50, [0, 0, 1, 0, 0]);  
+    build_flag_15 = function(a) {
+        var h_step = union_flag_w/7;
+        var v_step = union_flag_h/6;
+        for (var i = 0; i < 5; i += 1) {
+            for (var j = 0; j < 3; j += 1) {
+                a[3*i+j] = [(1 + i%2 + 2*j)*h_step, (1 + i)*v_step, 1, 0, 1];
+            }
+        }
+    };
+    build_flag_15(flag_15);
+
+
+
+
+    /*
+    /* Including the stars
+    /* * * * * * * * * * * */
+
+    // Star shape in SVG
+    var star_shape = [[0, -52.5746], [11.8020, -16.2478], [50, -16.2478], [19.1, 6.2043], [30.9, 42.5375], [0, 20.0811], [-30.8978, 42.5375], [-19.0979, 6.2043], [-50, -16.2478], [-11.8054, -16.2478]];
+
+    // At scale given the size of the flag (determined by h)
+    for (var i = 0; i < star_shape.length; i += 1) {
+        star_shape[i][0] *= star_r;
+        star_shape[i][1] *= star_r;
+    }
+
+    // Function to draw the SVG shape from the star_shape array
+    var lineFn = d3.svg.line()
+    .x(function(d) { return d[0] })
+    .y(function(d) { return d[1] });
+
+    // Initialization
+    var flag_stars = flag_15;
+
+    // Drawing the stars
+    var stars = svg.selectAll(".star")
+    .data(flag_stars)
+    .enter()
+    .append("path")
+    .attr("d", lineFn(star_shape))
+    .attr("class", "star")
+    .style("fill", "#fff")
+    .style("opacity", function(d) {
+        return d[4];
+    })
+    .attr("transform", function(d, i) {
+        return "translate("+ d[0] +", "+ d[1] +")" + "scale("+ d[2] +")" + "rotate("+ d[3] +")";
+    });
+
+    // Function called on a click on the Union Flag. Star transitions
+    function moveStars() {
+        // For now we just have 2 different flags => switch between them
+        if (flag_stars == flag_13) {
+            flag_stars = flag_15;
+        } else {
+            flag_stars = flag_13;
+        }
+        // Transitions
+        stars.data(flag_stars)
+        .transition()
+        .duration(1000)
+        .style("opacity", function(d) {
+            return d[4];
+        })
+        .attr("transform", function(d, i) {
+            return "translate("+ d[0] +", "+ d[1] +")" + "scale("+ d[2] +")" + "rotate("+ d[3] +")";
+        });                    
+    }
+
+    </script>
+</body>
 </html>

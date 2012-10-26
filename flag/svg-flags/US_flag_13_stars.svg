@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140px" height="600px" viewBox="0 0 2470 1300" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect fill="#BF0A30" width="2470" height="1300"/>
+<g id="stripe" fill="#fff">
+<rect y="100" width="2470" height="100"/>
+<rect y="300" width="2470" height="100"/>
+<rect y="500" width="2470" height="100"/>
+</g>
+<use xlink:href="#stripe" transform="translate(0,600)"/>
+<rect fill="#002868" width="988" height="700"/>
+<g id="5">
+<g id="3">
+<g id="star" fill="#fff" transform="translate(136,140) scale(40)">
+<g id="1">
+<polygon id="2" points="0,0 0,1 0.5,1" transform="translate(0, -1) rotate(18)"/>
+<use xlink:href="#2" transform="scale(-1, 1)"/>
+</g>
+<use xlink:href="#1" transform="rotate(72)"/>
+<use xlink:href="#1" transform="rotate(-72)"/>
+<use xlink:href="#1" transform="rotate(144)"/>
+<use xlink:href="#1" transform="rotate(-144)"/>
+</g>
+<use xlink:href="#star" transform="translate(0,210)"/>
+<use xlink:href="#star" transform="translate(0,420)"/>
+</g>
+<use xlink:href="#star" transform="translate(166,105)"/>
+<use xlink:href="#star" transform="translate(166,315)"/>
+</g>
+<use xlink:href="#5" transform="translate(332)"/>
+<use xlink:href="#3" transform="translate(664)"/>
+</svg>
