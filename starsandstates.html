@@ -19,7 +19,11 @@
   fill: steelblue;
 }
 
-#states .motion, .new, .motion.past {
+#states .new {
+  fill: red;
+}
+
+#states .motion {
   fill: red;
 }
 
@@ -141,6 +145,10 @@
 
     var past_states = states.filter( function(state) { return current_states.indexOf(state) > -1})
 
+    var states_for_this_year = join_years.filter( function(d) { return d.year === year})
+                                .map( function(d) {return d.states})
+                                .reduce( function(s1, s2){ return s1.concat(s2)}, [])
+
     current_states = states
 
 
@@ -164,8 +172,14 @@
        .delay(1000)
        .duration(1000)
        .attr("transform", "")
-       .each("end", function(){ d3.select(this).classed("motion", false)})
-     
+       .each("end", function(){ 
+        d3.select(this).classed("motion", false)
+                       .classed("new", function(d){ return states_for_this_year.indexOf(d.properties.name) > -1})
+                       .classed("past", function(d){ return states_for_this_year.indexOf(d.properties.name) < 0})
+        })
+    
+    console.log(states_for_this_year) 
+    color_states(states_for_this_year, "new")
   }
 
   function flag_callback(year) {
