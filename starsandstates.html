@@ -62,7 +62,7 @@
 
   var map_width = svg_width * 2/3
   var map_height = map_width / albers_ratio
-  var map_top_right = {x: 100, y: 0}
+  var map_top_right = {x: 400, y: 200}
 
 
   var projection = d3.geo.albersUsa()
@@ -84,7 +84,8 @@
   var map_group = svg.append("g")
       .attr("transform", "translate(" + (map_width * 1/ 2 + map_top_right.x)+ "," + (map_height * 1/ 2 + map_top_right.y) + ")")
       .attr("id", "map")
-    .append("g")
+  
+  var states_group = map_group.append("g")
       .attr("id", "states");
 
   var x_map_to_global = d3.scale.linear()
@@ -103,14 +104,17 @@
   //flag setup
   //------------------------------------------------------------------------------------------
 
-  var flag_top_right = {x: map_width + map_top_right.x, y: 200}
+  var flag_top_right = {x: 0 , y: 0}
+
 
   var flag_group = svg.append("g")
       .attr("transform", "translate(" +  flag_top_right.x+ "," + flag_top_right.y + ")")
 
+  // flag_group.parentNode.insertBefore(flag_group, flag_group.parentNode.firstChild)
+  map_group.node().parentNode.appendChild(map_group.node())
 
   // Constant variables
-  var flag_height = 200,
+  var flag_height = svg_height,
   flag_width = flag_height * 1.9,
   stripe_array = Array(13),
   stripe_h = flag_height/stripe_array.length,
@@ -154,7 +158,7 @@
   //-----------------------------------------------------------------------------------------
 
   d3.json("states_geo.json", function(json) {
-    map_group.selectAll("path")
+    states_group.selectAll("path")
         .data(json.features)
       .enter().append("path")
         .attr("d", path)
@@ -177,7 +181,7 @@
 
 
   function color_states(state_names, class_name) {
-    map_group.selectAll("path")
+    states_group.selectAll("path")
       .classed(class_name, function(d) { return state_names.indexOf(d.properties.name) > -1})
   }
 
@@ -231,7 +235,7 @@
     color_states(past_states, "past")
     color_states(new_states, "new")
 
-    map_group.selectAll(".new")
+    states_group.selectAll(".new")
      .classed("motion", true)
      .transition()
      .duration(1000)
