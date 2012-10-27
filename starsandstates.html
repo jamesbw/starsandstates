@@ -171,13 +171,15 @@
         name: c.name,
         x: x_flag_to_global.invert( x_map_to_global(c.centroid[0])),
         y: y_flag_to_global.invert( y_map_to_global(c.centroid[1])),
-        scale: undefined,
-        rotation: undefined,
-        opacity: undefined
+        scale: 1,
+        rotation: 0,
+        opacity: 0
       }
     })
 
   });
+  
+  console.log(star_data);
 
 
   function color_states(state_names, class_name) {
