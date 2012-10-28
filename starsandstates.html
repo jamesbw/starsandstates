@@ -99,6 +99,24 @@
 
 
   //----------------------------------------
+  
+  function deepCopy(obj) {
+      if (Object.prototype.toString.call(obj) === '[object Array]') {
+          var out = [], i = 0, len = obj.length;
+          for ( ; i < len; i++ ) {
+              out[i] = arguments.callee(obj[i]);
+          }
+          return out;
+      }
+      if (typeof obj === 'object') {
+          var out = {}, i;
+          for ( i in obj ) {
+              out[i] = arguments.callee(obj[i]);
+          }
+          return out;
+      }
+      return obj;
+  }
 
 
   //flag setup
@@ -157,6 +175,25 @@
 
   //-----------------------------------------------------------------------------------------
 
+
+
+
+  function color_states(state_names, class_name) {
+    states_group.selectAll("path")
+      .classed(class_name, function(d) { return state_names.indexOf(d.properties.name) > -1})
+  }
+
+
+  var join_years;
+  var centroids;
+  d3.json("join_years.json", function(json) { 
+    join_years = json
+  })
+  
+  
+  
+  var flag_stars;
+  
   d3.json("states_geo.json", function(json) {
     states_group.selectAll("path")
         .data(json.features)
@@ -176,100 +213,243 @@
         opacity: 0
       }
     })
-
+    
+    
+    flags_data = join_years.map(function(d) {
+        var s = new Array();
+        s = deepCopy(star_data);
+        return {
+            year: d.year,
+            version: 1,
+            star_data: s
+        }
+    });
+    
+    // flags_data = new Array();
+    // for (var i = 0; i < flag_years.length; i += 1) {
+    //     flags_data[flag_years[i].toString()] = star_data;
+    // }
+    
+    updateStarPosition = function(year, version, state, x, y, s, r, o) {
+        flags_data.filter(function(d) {
+            return (d.year == year && d.version == version)
+        }).map(function(d) {
+            d.star_data.filter(function(d){return d.name == state}).map(function(d){
+                d.x = x;
+                d.y = y;
+                d.scale = s;
+                d.rotation = r;
+                d.opacity = o;
+                })
+        })
+    }
+    
+    // Flag 1776 - 13 stars
+    buildFlag1776_13_1 = function() {
+        var h_step = union_flag_w/6;
+        var v_step = union_flag_h/6;
+        updateStarPosition(1776, 1, "Delaware", 1*h_step, 1*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "Pennsylvania", 3*h_step, 1*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "New Jersey", 5*h_step, 1*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "Georgia", 2*h_step, 2*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "Connecticut", 4*h_step, 2*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "Massachusetts", 1*h_step, 3*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "Maryland", 3*h_step, 3*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "South Carolina", 5*h_step, 3*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "New Hampshire", 2*h_step, 4*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "Virginia", 4*h_step, 4*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "New York", 1*h_step, 5*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "North Carolina", 3*h_step, 5*v_step, 1, 0, 1);
+        updateStarPosition(1776, 1, "Rhode Island", 5*h_step, 5*v_step, 1, 0, 1);
+    };
+    
+    buildFlag1795_15_1 = function() {
+        var h_step = union_flag_w/7;
+        var v_step = union_flag_h/6;
+        updateStarPosition(1795, 1, "Delaware", 1*h_step, 1*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "Pennsylvania", 3*h_step, 1*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "New Jersey", 5*h_step, 1*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "Georgia", 2*h_step, 2*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "Connecticut", 4*h_step, 2*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "Vermont", 6*h_step, 2*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "Massachusetts", 1*h_step, 3*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "Maryland", 3*h_step, 3*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "South Carolina", 5*h_step, 3*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "New Hampshire", 2*h_step, 4*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "Virginia", 4*h_step, 4*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "Kentucky", 6*h_step, 4*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "New York", 1*h_step, 5*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "North Carolina", 3*h_step, 5*v_step, 1, 0, 1);
+        updateStarPosition(1795, 1, "Rhode Island", 5*h_step, 5*v_step, 1, 0, 1);
+    };
+    
+    buildFlag1776_13_1();
+    buildFlag1795_15_1();
+    
+    
+    // star_data.filter(function(d){return d.name == "Wisconsin"}).map(function(d){ d.scale = 5; d.x = 2})
+      
+    run();
   });
   
-  console.log(star_data);
-
-
-  function color_states(state_names, class_name) {
-    states_group.selectAll("path")
-      .classed(class_name, function(d) { return state_names.indexOf(d.properties.name) > -1})
-  }
-
-
-  var join_years;
-  var centroids;
-  d3.json("join_years.json", function(json) { 
-    join_years = json
-  })
+  
 
   var current_states = []
 
 
   var slider = d3.select("#slider")
   var year = d3.select("#year")
-  var update_year = function(_year){
-    year.text(_year)
-    var slider_width = parseInt(slider.style("width").slice(0, -2))
-    var min = parseInt(slider.attr("min"))
-    var max = parseInt(slider.attr("max"))
-    var slider_pos = (_year - min) / (max - min) * slider_width
-    year.style("left", (slider_pos - slider_width / 2) + "px") 
-  }
-  slider.value = 1750
-  update_year(parseInt(slider.value))
-  slider.on("change", function(){ 
-    var year = parseInt(this.value); 
-    update_year(year);
-    map_callback(year);
-    flag_callback(year);
-  }, false);
 
 
-  function map_callback(year) {
-
-    var states = join_years.filter( function(d) { return d.year <= year})
-                                .map( function(d) {return d.states})
-                                .reduce( function(s1, s2){ return s1.concat(s2)}, [])
-
-    var new_states = states.filter( function(state) { return current_states.indexOf(state) < 0})
-
-    var past_states = states.filter( function(state) { return current_states.indexOf(state) > -1})
-
-    var states_for_this_year = join_years.filter( function(d) { return d.year === year})
-                                .map( function(d) {return d.states})
-                                .reduce( function(s1, s2){ return s1.concat(s2)}, [])
-
-    current_states = states
 
 
-    color_states(past_states, "past")
-    color_states(new_states, "new")
 
-    states_group.selectAll(".new")
-     .classed("motion", true)
-     .transition()
-     .duration(1000)
-     .attr("transform", function(d) {
-       var centroid = path.centroid(d),
-       x = centroid[0],
-       y = centroid[1];
-        return "translate(" + x + "," + y + ")"
-       + "scale(" + 1.5 + ")"
-       + "translate(" + -x + "," + -y + ")";
-     })
-     .each(function(){this.parentNode.appendChild(this)})
-       .transition()
-       .delay(1000)
-       .duration(1000)
-       .attr("transform", "")
-       .each("end", function(){ 
-        d3.select(this).classed("motion", false)
-                       .classed("new", function(d){ return states_for_this_year.indexOf(d.properties.name) > -1})
-                       .classed("past", function(d){ return states_for_this_year.indexOf(d.properties.name) < 0})
-        })
+
+
+
+
+
+
+
+
+
+
+function run() {
     
-    console.log(states_for_this_year) 
-    color_states(states_for_this_year, "new")
+    var update_year = function(_year){
+      year.text(_year)
+      var slider_width = parseInt(slider.style("width").slice(0, -2))
+      var min = parseInt(slider.attr("min"))
+      var max = parseInt(slider.attr("max"))
+      var slider_pos = (_year - min) / (max - min) * slider_width
+      year.style("left", (slider_pos - slider_width / 2) + "px") 
+    }
+    slider.value = 1750
+    update_year(parseInt(slider.value))
+    slider.on("change", function(){ 
+      var year = parseInt(this.value); 
+      update_year(year);
+      map_callback(year);
+      flag_callback(year);
+    }, false);
+
+
+    function map_callback(year) {
+
+      var states = join_years.filter( function(d) { return d.year <= year})
+                                  .map( function(d) {return d.states})
+                                  .reduce( function(s1, s2){ return s1.concat(s2)}, [])
+
+      var new_states = states.filter( function(state) { return current_states.indexOf(state) < 0})
+
+      var past_states = states.filter( function(state) { return current_states.indexOf(state) > -1})
+
+      var states_for_this_year = join_years.filter( function(d) { return d.year === year})
+                                  .map( function(d) {return d.states})
+                                  .reduce( function(s1, s2){ return s1.concat(s2)}, [])
+
+      current_states = states
+
+
+      color_states(past_states, "past")
+      color_states(new_states, "new")
+
+      states_group.selectAll(".new")
+       .classed("motion", true)
+       .transition()
+       .duration(1000)
+       .attr("transform", function(d) {
+         var centroid = path.centroid(d),
+         x = centroid[0],
+         y = centroid[1];
+          return "translate(" + x + "," + y + ")"
+         + "scale(" + 1.5 + ")"
+         + "translate(" + -x + "," + -y + ")";
+       })
+       .each(function(){this.parentNode.appendChild(this)})
+         .transition()
+         .delay(1000)
+         .duration(1000)
+         .attr("transform", "")
+         .each("end", function(){ 
+          d3.select(this).classed("motion", false)
+                         .classed("new", function(d){ return states_for_this_year.indexOf(d.properties.name) > -1})
+                         .classed("past", function(d){ return states_for_this_year.indexOf(d.properties.name) < 0})
+          })
+
+      console.log(states_for_this_year) 
+      color_states(states_for_this_year, "new")
+    }
+
+  /*
+  /* Including the stars
+  /* * * * * * * * * * * */
+
+  // Star shape in SVG
+  var star_shape = [[0, -52.5746], [11.8020, -16.2478], [50, -16.2478], [19.1, 6.2043], [30.9, 42.5375], [0, 20.0811], [-30.8978, 42.5375], [-19.0979, 6.2043], [-50, -16.2478], [-11.8054, -16.2478]];
+
+  // At scale given the size of the flag (determined by h)
+  for (var i = 0; i < star_shape.length; i += 1) {
+      star_shape[i][0] *= star_r;
+      star_shape[i][1] *= star_r;
   }
+
+  // Function to draw the SVG shape from the star_shape array
+  var lineFn = d3.svg.line()
+  .x(function(d) { return d[0] })
+  .y(function(d) { return d[1] });
+  
+  
+
+  // Initialization
+  console.log(flags_data);
+  
+  flag_stars = flags_data.filter(function(d) {
+        return d.year == 1776;
+    })[0].star_data;
+
+  // Drawing the stars
+  var stars = svg.selectAll(".star")
+  .data(flag_stars)
+  .enter()
+  .append("path")
+  .attr("d", lineFn(star_shape))
+  .attr("class", "star")
+  .style("fill", "#fff")
+  .style("opacity", function(d) {
+      return d.opacity;
+  })
+  .attr("transform", function(d, i) {
+      return "translate("+ d.x +", "+ d.y +")" + "scale("+ d.scale +")" + "rotate("+ d.rotation +")";
+  });
+
+
+
+
+  years = join_years.map(function(d) {return d.year});
 
   function flag_callback(year) {
-
-    // remplis ici. Tu peux utiliser star_data qui contient les centroids dans le referentiel du drapeau
+      if (years.indexOf(year) > -1) {
+      
+          flag_stars = flags_data.filter(function(d) {
+                return d.year == year;
+            })[0].star_data;
+  
+          // Transitions
+          stars.data(flag_stars)
+          .transition()
+          .duration(1000)
+          .style("opacity", function(d) {
+              return d.opacity;
+          })
+          .attr("transform", function(d, i) {
+              return "translate("+ d.x +", "+ d.y +")" + "scale("+ d.scale +")" + "rotate("+ d.rotation +")";
+          });
+  
+        }
   }
 
-
+}
 
 
 
