@@ -42,6 +42,10 @@
   stroke: black;
 }
 
+.active {
+  fill: yellow;
+}
+
 </style>
 <body>
   <div id="svg_container"></div>
@@ -54,15 +58,15 @@
 <script>
 
   var albers_ratio = 960/500
-  var svg_width = 1200,
-      svg_height = svg_width / albers_ratio
+  var svg_width = 1300,
+      svg_height = 1000
 
 //Map setup
 //------------------------------------------------------
 
   var map_width = svg_width * 2/3
   var map_height = map_width / albers_ratio
-  var map_top_right = {x: 400, y: 200}
+  var map_top_right = {x: 500, y: 200}
 
 
   var projection = d3.geo.albersUsa()
@@ -132,8 +136,8 @@
   map_group.node().parentNode.appendChild(map_group.node())
 
   // Constant variables
-  var flag_height = svg_height,
-  flag_width = flag_height * 1.9,
+  var flag_width = svg_width ,
+  flag_height = flag_width / 1.9,
   stripe_array = Array(13),
   stripe_h = flag_height/stripe_array.length,
   union_flag_h = stripe_h*7.,
@@ -176,6 +180,44 @@
   //-----------------------------------------------------------------------------------------
 
 
+  //slider setup
+  //---------------------------------------------------------------------------------------
+
+
+  var slider_group = svg.append('g')
+                        .attr("transform", "translate(0, " + (flag_height + 20) + ")")
+
+  var slider_height = 60
+
+  var x_slider = d3.scale.linear()
+                 .range([0, flag_width])
+                 .domain([1750, 2012])
+
+  var slider_marker = slider_group.append('g')
+  var slider_marker_color = 'red'
+
+  slider_marker.append('line')
+    .attr('stroke', slider_marker_color)
+    .attr('stroke_width', '3')
+    .attr('y1', 0)
+    .attr('y2', slider_height)
+    .attr('x1', 0)
+    .attr('x2', 0)
+
+  var triangle = slider_marker.append('polygon')
+    .attr('fill', slider_marker_color)
+    .attr('points', '0,0  -7, -10 7, -10')
+
+  var bottom_triangle = d3.select(triangle.node().cloneNode())
+                            .attr("transform", "translate(0, " + slider_height +")scale(1, -1)")
+
+  slider_marker.node().appendChild(bottom_triangle.node())
+
+
+
+  //---------------------------------------------------------------------------------------
+
+
 
 
   function color_states(state_names, class_name) {
@@ -188,6 +230,27 @@
   var centroids;
   d3.json("join_years.json", function(json) { 
     join_years = json
+
+    var slider_data = []
+    slider_data.push({start: 1750, end: 1776})
+    for (var i = 1; i < join_years.length; i++) {
+      slider_data.push({ start: join_years[i-1].year, end: join_years[i].year})
+    };
+    slider_data.push({start: 1960, end: 2012})
+    console.log(slider_data)
+
+    slider_group.selectAll("rect")
+    .data(slider_data)
+    .enter().append("rect")
+    .attr('fill', function(d, i){  
+      if (i%2===0)  
+        return '#5adbb0' 
+      else  
+        return '#4d8f79'})
+    .attr('x', function(d) { return x_slider(d.start)})
+    .attr('y', 0)
+    .attr('height', slider_height)
+    .attr('width', function(d){return x_slider(d.end) - x_slider(d.start)})
   })
   
   
@@ -1408,7 +1471,7 @@
 
 
   var slider = d3.select("#slider")
-  var year = d3.select("#year")
+  var year_el = d3.select("#year")
 
 
 
@@ -1425,14 +1488,32 @@
 
 
 function run() {
+
+    year = 1750
+
+    slider_group.selectAll("rect")
+      .on('click', function(d){ year = d.start; update()})
+
+    function update() {
+      slider_group.selectAll("rect")
+        .classed('active', function(d){ return  d.start <= year && d.end > year})
+
+      slider_marker.attr("transform", "translate(" + x_slider(year) +",0)")
+
+      slider_marker.node().parentNode.appendChild(slider_marker.node())
+
+
+      map_callback(year)
+      flag_callback(year)
+    }
     
     var update_year = function(_year){
-      year.text(_year)
+      year_el.text(_year)
       var slider_width = parseInt(slider.style("width").slice(0, -2))
       var min = parseInt(slider.attr("min"))
       var max = parseInt(slider.attr("max"))
       var slider_pos = (_year - min) / (max - min) * slider_width
-      year.style("left", (slider_pos - slider_width / 2) + "px") 
+      year_el.style("left", (slider_pos - slider_width / 2) + "px") 
     }
     slider.value = 1750
     update_year(parseInt(slider.value))
