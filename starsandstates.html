@@ -1494,6 +1494,22 @@ function run() {
     slider_group.selectAll("rect")
       .on('click', function(d){ year = d.start; update()})
 
+    var slider_drag = d3.behavior.drag().on("drag", function(d){
+      year = x_slider.invert(d3.event.x)
+      update()
+
+    });
+
+    slider_marker.call(slider_drag)
+
+
+    // slider_marker.on('mousedown', function(e) {
+    //   year = x_slider.invert(this.clientX)
+    //   console.log("ClientX: " + this.clientX)
+    //   console.log(year)
+    //   update()
+    // })
+
     function update() {
       slider_group.selectAll("rect")
         .classed('active', function(d){ return  d.start <= year && d.end > year})
