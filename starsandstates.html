@@ -277,7 +277,7 @@
       }
     })
     
-    
+    // Initialize the flags_data array
     flags_data = join_years.map(function(d) {
         var s = new Array();
         s = deepCopy(star_data);
@@ -287,7 +287,24 @@
             star_data: s
         }
     });
+	
+	function addAlternativeFlags() {
+		a = [[1776, 2], [1776, 3], [1837, 2], [1847, 2], [1859, 2], [1859, 3], [1867, 2], [1877, 2], [1877, 3]];
+		for (var i = 0; i < a.length ; i += 1) {
+			console.log(a[i][0]);
+			var s = new Array();
+	        s = deepCopy(star_data);
+			var n = new Object()
+			n["year"] = a[i][0];
+			n["version"] = a[i][1];
+			n["star_data"] = s;
+			flags_data.push(n);
+		}
+	}
+	
+	addAlternativeFlags();
     
+    // Update the position of the stars in flags_array
     updateStarPosition = function(year, version, state, x, y, s, r, o) {
         flags_data.filter(function(d) {
             return (d.year == year && d.version == version)
@@ -323,6 +340,53 @@
         updateStarPosition(1776, 1, "New York", 1*h_step, 5*v_step, 1, 0, 1);
         updateStarPosition(1776, 1, "North Carolina", 3*h_step, 5*v_step, 1, 0, 1);
         updateStarPosition(1776, 1, "Rhode Island", 5*h_step, 5*v_step, 1, 0, 1);
+    };
+    
+    buildFlag1776_13_2 = function() {
+        var cx = union_flag_w/2;
+        var cy = union_flag_h/2;
+        var r = union_flag_h*0.4;
+        updateStarPosition(1776, 2, "Delaware",       cx + r*Math.cos( 4*Math.PI/6), cy - r*Math.sin( 4*Math.PI/6), 1, -1*180/6, 1); //  2
+        updateStarPosition(1776, 2, "Pennsylvania",   cx + r*Math.cos( 3*Math.PI/6), cy - r*Math.sin( 3*Math.PI/6), 1,        0, 1); //  1
+        updateStarPosition(1776, 2, "New Jersey",     cx + r*Math.cos( 2*Math.PI/6), cy - r*Math.sin( 2*Math.PI/6), 1,  1*180/6, 1); // 12
+        
+        updateStarPosition(1776, 2, "Georgia",        cx + r*Math.cos( 5*Math.PI/6), cy - r*Math.sin( 5*Math.PI/6), 1, -2*180/6, 1); //  3
+        updateStarPosition(1776, 2, "Connecticut",    cx + r*Math.cos( 1*Math.PI/6), cy - r*Math.sin( 1*Math.PI/6), 1,  2*180/6, 1); // 11
+        
+        updateStarPosition(1776, 2, "Massachusetts",  cx - r                       , cy                           , 1, -3*180/6, 1); //  4
+        updateStarPosition(1776, 2, "Maryland",       cx                           , cy                           , 1,        0, 1);
+        updateStarPosition(1776, 2, "South Carolina", cx + r                       , cy                           , 1,  3*180/6, 1); // 10
+        
+        updateStarPosition(1776, 2, "New Hampshire",  cx + r*Math.cos(-5*Math.PI/6), cy - r*Math.sin(-5*Math.PI/6), 1, -4*180/6, 1); //  5
+        updateStarPosition(1776, 2, "Virginia",       cx + r*Math.cos(-1*Math.PI/6), cy - r*Math.sin(-1*Math.PI/6), 1,  4*180/6, 1); //  9
+        
+        updateStarPosition(1776, 2, "New York",       cx + r*Math.cos(-4*Math.PI/6), cy - r*Math.sin(-4*Math.PI/6), 1, -5*180/6, 1); //  6 
+        updateStarPosition(1776, 2, "North Carolina", cx + r*Math.cos(-3*Math.PI/6), cy - r*Math.sin(-3*Math.PI/6), 1, -6*180/6, 1); //  7
+        updateStarPosition(1776, 2, "Rhode Island",   cx + r*Math.cos(-2*Math.PI/6), cy - r*Math.sin(-2*Math.PI/6), 1,  5*180/6, 1); //  8
+    };
+    
+    buildFlag1776_13_3 = function() {
+        var cx = union_flag_w/2;
+        var cy = union_flag_h/2;
+        var r = union_flag_h*0.4;
+        var deg = Math.PI/180
+        updateStarPosition(1776, 3, "Delaware",       cx + r*Math.cos(21*Math.PI/26), cy - r*Math.sin(21*Math.PI/26), 1,  -4*180/13, 1); //  3
+        updateStarPosition(1776, 3, "Pennsylvania",   cx + r*Math.cos(17*Math.PI/26), cy - r*Math.sin(17*Math.PI/26), 1,  -2*180/13, 1); //  2
+        updateStarPosition(1776, 3, "New Jersey",     cx + r*Math.cos(61*Math.PI/26), cy - r*Math.sin(61*Math.PI/26), 1,   2*180/13, 1); // 13
+        
+        updateStarPosition(1776, 3, "Georgia",        cx + r*Math.cos(25*Math.PI/26), cy - r*Math.sin(25*Math.PI/26), 1,  -6*180/13, 1); //  4
+        updateStarPosition(1776, 3, "Connecticut",    cx + r*Math.cos(57*Math.PI/26), cy - r*Math.sin(57*Math.PI/26), 1,   4*180/13, 1); // 12
+        
+        updateStarPosition(1776, 3, "Massachusetts",  cx + r*Math.cos(29*Math.PI/26), cy - r*Math.sin(29*Math.PI/26), 1,  -8*180/13, 1); //  5
+        updateStarPosition(1776, 3, "Maryland",       cx + r*Math.cos(13*Math.PI/26), cy - r*Math.sin(13*Math.PI/26), 1,   0       , 1); //  1
+        updateStarPosition(1776, 3, "South Carolina", cx + r*Math.cos(53*Math.PI/26), cy - r*Math.sin(53*Math.PI/26), 1,   6*180/13, 1); // 11
+        
+        updateStarPosition(1776, 3, "New Hampshire",  cx + r*Math.cos(33*Math.PI/26), cy - r*Math.sin(33*Math.PI/26), 1, -10*180/13, 1); //  6
+        updateStarPosition(1776, 3, "Virginia",       cx + r*Math.cos(49*Math.PI/26), cy - r*Math.sin(49*Math.PI/26), 1,   8*180/13, 1); // 10
+        
+        updateStarPosition(1776, 3, "New York",       cx + r*Math.cos(37*Math.PI/26), cy - r*Math.sin(37*Math.PI/26), 1, -12*180/13, 1); //  7
+        updateStarPosition(1776, 3, "North Carolina", cx + r*Math.cos(41*Math.PI/26), cy - r*Math.sin(41*Math.PI/26), 1,  12*180/13, 1); //  8
+        updateStarPosition(1776, 3, "Rhode Island",   cx + r*Math.cos(45*Math.PI/26), cy - r*Math.sin(45*Math.PI/26), 1,  10*180/13, 1); //  9
     };
     
     buildFlag1795_15_1 = function() {
@@ -536,6 +600,44 @@
         updateStarPosition(1837, 1, "Arkansas", 13*h_step, 3.5*v_step, 1, 0, 1);
     };
     
+    buildFlag1837_26_2 = function() {
+        var cx = union_flag_w/2;
+        var cy = 5*union_flag_h/11;
+        var r4 = union_flag_h*0.46;
+        var r3 = union_flag_h*0.35;
+        var r2 = union_flag_h*0.26;
+        var r1 = union_flag_h*0.2;
+        updateStarPosition(1837, 2, "Delaware",       cx + r4*Math.cos(  7*Math.PI/10), cy - r4*Math.sin(  7*Math.PI/10), 0.8,          0, 1); //                 r4 4
+        updateStarPosition(1837, 2, "Georgia",        cx + r3*Math.cos( 19*Math.PI/30), cy - r3*Math.sin( 19*Math.PI/30), 1.0,   5*180/15, 1); //           r3  2
+        updateStarPosition(1837, 2, "Pennsylvania",   cx + r1*Math.cos(  7*Math.PI/10), cy - r1*Math.sin(  7*Math.PI/10), 1.3,    2*180/5, 1); // r1 4
+        updateStarPosition(1837, 2, "Connecticut",    cx + r2*Math.cos(  5*Math.PI/10), cy - r2*Math.sin(  5*Math.PI/10), 1.1,   -1*180/5, 1); //      r2 1
+        updateStarPosition(1837, 2, "New Jersey",     cx + r1*Math.cos(  3*Math.PI/10), cy - r1*Math.sin(  3*Math.PI/10), 1.3,   -2*180/5, 1); // r1 3
+        updateStarPosition(1837, 2, "Maine",          cx + r3*Math.cos( 71*Math.PI/30), cy - r3*Math.sin( 71*Math.PI/30), 1.0,  -5*180/15, 1); //           r3 15
+        updateStarPosition(1837, 2, "Michigan",       cx + r4*Math.cos(  3*Math.PI/10), cy - r4*Math.sin(  3*Math.PI/10), 0.8,          0, 1); //                 r4 2
+        
+        updateStarPosition(1837, 2, "Massachusetts",  cx + r3*Math.cos( 23*Math.PI/30), cy - r3*Math.sin( 23*Math.PI/30), 1.0,   1*180/15, 1); //           r3  3
+        updateStarPosition(1837, 2, "Maryland",       cx + r2*Math.cos(  9*Math.PI/10), cy - r2*Math.sin(  9*Math.PI/10), 1.1,    1*180/5, 1); //       r2 2
+        updateStarPosition(1837, 2, "South Carolina", cx                              ,                               cy, 2.0,          0, 1); // center
+        updateStarPosition(1837, 2, "Vermont",        cx + r1*Math.cos( -5*Math.PI/10), cy - r1*Math.sin( -5*Math.PI/10), 1.3,          0, 1); // r1 1
+        updateStarPosition(1837, 2, "Alabama",        cx + r2*Math.cos( 21*Math.PI/10), cy - r2*Math.sin( 21*Math.PI/10), 1.1,   -1*180/5, 1); //      r2 5
+        updateStarPosition(1837, 2, "Missouri",       cx + r3*Math.cos( 67*Math.PI/30), cy - r3*Math.sin( 67*Math.PI/30), 1.0,  -1*180/15, 1); //           r3 14
+        
+        updateStarPosition(1837, 2, "New York",       cx + r3*Math.cos( 31*Math.PI/30), cy - r3*Math.sin( 31*Math.PI/30), 1.0,   5*180/15, 1); //           r3  5
+        updateStarPosition(1837, 2, "New Hampshire",  cx + r1*Math.cos( 11*Math.PI/10), cy - r1*Math.sin( 11*Math.PI/10), 1.3,    2*180/5, 1); // r1 5
+        updateStarPosition(1837, 2, "North Carolina", cx + r3*Math.cos( 43*Math.PI/30), cy - r3*Math.sin( 43*Math.PI/30), 1.0,   1*180/15, 1); //           r3  8
+        updateStarPosition(1837, 2, "Virginia",       cx + r3*Math.cos( 47*Math.PI/30), cy - r3*Math.sin( 47*Math.PI/30), 1.0,  -1*180/15, 1); //           r3  9
+        updateStarPosition(1837, 2, "Rhode Island",   cx + r1*Math.cos( -1*Math.PI/10), cy - r1*Math.sin( -1*Math.PI/10), 1.3,   -2*180/5, 1); // r1 2
+        updateStarPosition(1837, 2, "Kentucky",       cx + r3*Math.cos( 59*Math.PI/30), cy - r3*Math.sin( 59*Math.PI/30), 1.0,  -5*180/15, 1); //           r3 12
+        
+        updateStarPosition(1837, 2, "Indiana",        cx + r4*Math.cos( 11*Math.PI/10), cy - r4*Math.sin( 11*Math.PI/10), 0.8,          0, 1); //                 r4 5
+        updateStarPosition(1837, 2, "Louisiana",      cx + r3*Math.cos( 35*Math.PI/30), cy - r3*Math.sin( 35*Math.PI/30), 1.0,   1*180/15, 1); //           r3  6
+        updateStarPosition(1837, 2, "Mississippi",    cx + r2*Math.cos( 13*Math.PI/10), cy - r2*Math.sin( 13*Math.PI/10), 1.1,      180/5, 1); //      r2 3
+        updateStarPosition(1837, 2, "Ohio",           cx + r4*Math.cos( -5*Math.PI/10), cy - r4*Math.sin( -5*Math.PI/10), 0.8,          0, 1); //                 r4 1
+        updateStarPosition(1837, 2, "Tennessee",      cx + r2*Math.cos( 17*Math.PI/10), cy - r2*Math.sin( 17*Math.PI/10), 1.1,   -1*180/5, 1); //      r2 4
+        updateStarPosition(1837, 2, "Illinois",       cx + r3*Math.cos( 55*Math.PI/30), cy - r3*Math.sin( 55*Math.PI/30), 1.0,  -1*180/15, 1); //           r3 11
+        updateStarPosition(1837, 2, "Arkansas",       cx + r4*Math.cos( -1*Math.PI/10), cy - r4*Math.sin( -1*Math.PI/10), 0.8,          0, 1); //                 r4 2
+    };
+    
     buildFlag1845_27_1 = function() {
         var h_step = union_flag_w/14;
         var v_step = union_flag_h/4;
@@ -642,6 +744,43 @@
         updateStarPosition(1847, 1, "Illinois", 11*h_step, 3.5*v_step, 1, 0, 1);
         updateStarPosition(1847, 1, "Arkansas", 13*h_step, 3.5*v_step, 1, 0, 1);
         updateStarPosition(1847, 1, "Florida", 15*h_step, 3.5*v_step, 1, 0, 1);
+    }
+
+	buildFlag1847_29_2 = function() {
+        var h_step = union_flag_w/8;
+        var v_step = union_flag_h/8;
+        updateStarPosition(1847, 2, "Delaware", 1*h_step, 1.5*v_step, 1, 0, 1);			// OK
+        updateStarPosition(1847, 2, "Georgia", 2*h_step, 3*v_step, 1, 0, 1);			// 			3.1
+        updateStarPosition(1847, 2, "Pennsylvania", 3*h_step, 2*v_step, 1, 0, 1);		// 		2.1
+        updateStarPosition(1847, 2, "Connecticut", 4*h_step, 2*v_step, 1, 0, 1);		// 		2.2
+        updateStarPosition(1847, 2, "New Jersey", 4*h_step, 1*v_step, 1, 0, 1);			// 	1.1
+        updateStarPosition(1847, 2, "Maine", 5*h_step, 2*v_step, 1, 0, 1);				// 		2.3
+        updateStarPosition(1847, 2, "Michigan", 6*h_step, 3*v_step, 1, 0, 1);			// 			3.5
+        updateStarPosition(1847, 2, "Iowa", 7*h_step, 1.5*v_step, 1, 0, 1);				// 	OK
+        
+        updateStarPosition(1847, 2, "Massachusetts", 1*h_step, 4*v_step, 1, 0, 1);		// 				4.1
+        updateStarPosition(1847, 2, "Maryland", 2*h_step, 4*v_step, 1, 0, 1);			// 				4.2
+        updateStarPosition(1847, 2, "South Carolina", 3*h_step, 3*v_step, 1, 0, 1);		// 			3.2
+        updateStarPosition(1847, 2, "Vermont", 4*h_step, 3*v_step, 1, 0, 1);			// 			3.3
+        updateStarPosition(1847, 2, "Alabama", 5*h_step, 3*v_step, 1, 0, 1);			// 			3.4
+        updateStarPosition(1847, 2, "Missouri", 6*h_step, 4*v_step, 1, 0, 1);			//				4.6
+        updateStarPosition(1847, 2, "Texas", 7*h_step, 4*v_step, 1, 0, 1);				//				4.7
+        
+        updateStarPosition(1847, 2, "New York", 2*h_step, 5*v_step, 1, 0, 1);			//					5.1
+        updateStarPosition(1847, 2, "New Hampshire", 3*h_step, 5*v_step, 1, 0, 1);		//					5.2
+        updateStarPosition(1847, 2, "North Carolina", 3*h_step, 4*v_step, 1, 0, 1);		//				4.3
+        updateStarPosition(1847, 2, "Virginia", 4*h_step, 4*v_step, 1, 0, 1);			//				4.4
+        updateStarPosition(1847, 2, "Rhode Island", 5*h_step, 4*v_step, 1, 0, 1);		//				4.5
+        updateStarPosition(1847, 2, "Kentucky", 6*h_step, 5*v_step, 1, 0, 1);			//					5.5
+        
+        updateStarPosition(1847, 2, "Indiana", 1*h_step, 6.5*v_step, 1, 0, 1);			// OK
+        updateStarPosition(1847, 2, "Louisiana", 3*h_step, 6*v_step, 1, 0, 1);			//						6.1
+        updateStarPosition(1847, 2, "Mississippi", 4*h_step, 6*v_step, 1, 0, 1);		//						6.2
+        updateStarPosition(1847, 2, "Ohio", 4*h_step, 5*v_step, 1, 0, 1);				//					5.3
+        updateStarPosition(1847, 2, "Tennessee", 5*h_step, 5*v_step, 1, 0, 1);			//					5.4
+        updateStarPosition(1847, 2, "Illinois", 4*h_step, 7*v_step, 1, 0, 1);			//							7.1
+        updateStarPosition(1847, 2, "Arkansas", 5*h_step, 6*v_step, 1, 0, 1);			//						6.3
+        updateStarPosition(1847, 2, "Florida", 7*h_step, 6.5*v_step, 1, 0, 1);			// OK
     }
     
     buildFlag1848_30_1 = function() {
@@ -804,6 +943,90 @@
         updateStarPosition(1859, 1, "Florida", 9*h_step, 4.5*v_step, 1, 0, 1);
         updateStarPosition(1859, 1, "Wisconsin", 11*h_step, 4.5*v_step, 1, 0, 1);
         updateStarPosition(1859, 1, "California", 13*h_step, 4.5*v_step, 1, 0, 1);
+    }
+
+    buildFlag1859_33_2 = function() {
+        var h_step = union_flag_w/8;
+        var v_step = union_flag_h/8;
+        updateStarPosition(1859, 2, "Delaware",       1*h_step, 1*v_step, 1, 0, 1);		// corner
+        updateStarPosition(1859, 2, "Georgia", 	      3*h_step, 2*v_step, 1, 0, 1);		// 2.1
+        updateStarPosition(1859, 2, "Pennsylvania",   4*h_step, 2*v_step, 1, 0, 1);		// 2.2
+        updateStarPosition(1859, 2, "Connecticut",    4*h_step, 1*v_step, 1, 0, 1);		// 1.1
+        updateStarPosition(1859, 2, "New Jersey",     5*h_step, 2*v_step, 1, 0, 1);		// 2.3
+        updateStarPosition(1859, 2, "Maine", 		  6*h_step, 3*v_step, 1, 0, 1);		// 3.5
+        updateStarPosition(1859, 2, "Iowa", 		  7*h_step, 1*v_step, 1, 0, 1);		// corner
+        
+        updateStarPosition(1859, 2, "Massachusetts",  1*h_step, 2*v_step, 1, 0, 1);		// corner
+        updateStarPosition(1859, 2, "Maryland", 	  2*h_step, 3*v_step, 1, 0, 1);		// 3.1
+        updateStarPosition(1859, 2, "South Carolina", 3*h_step, 3*v_step, 1, 0, 1);		// 3.2
+        updateStarPosition(1859, 2, "Vermont", 		  4*h_step, 3*v_step, 1, 0, 1);		// 3.3
+        updateStarPosition(1859, 2, "Michigan",       5*h_step, 3*v_step, 1, 0, 1);		// 3.4
+        updateStarPosition(1859, 2, "Minnesota",      7*h_step, 4*v_step, 1, 0, 1);		// 4.7
+        updateStarPosition(1859, 2, "Texas",          7*h_step, 2*v_step, 1, 0, 1);		// corner
+        
+        updateStarPosition(1859, 2, "New York",       2*h_step, 4*v_step, 1, 0, 1);		// 4.2
+        updateStarPosition(1859, 2, "New Hampshire",  3*h_step, 4*v_step, 1, 0, 1);		// 4.3
+        updateStarPosition(1859, 2, "North Carolina", 4*h_step, 4*v_step, 1, 0, 1);		// 4.4
+        updateStarPosition(1859, 2, "Alabama",        5*h_step, 4*v_step, 1, 0, 1);		// 4.5
+        updateStarPosition(1859, 2, "Missouri",       6*h_step, 4*v_step, 1, 0, 1);		// 4.6
+        
+        updateStarPosition(1859, 2, "Indiana",        1*h_step, 6*v_step, 1, 0, 1);		// corner
+        updateStarPosition(1859, 2, "Louisiana",      1*h_step, 4*v_step, 1, 0, 1);		// 4.7
+        updateStarPosition(1859, 2, "Mississippi",    3*h_step, 5*v_step, 1, 0, 1);		// 5.2
+        updateStarPosition(1859, 2, "Virginia",       4*h_step, 5*v_step, 1, 0, 1);		// 5.3
+        updateStarPosition(1859, 2, "Rhode Island",   5*h_step, 5*v_step, 1, 0, 1);		// 5.4
+        updateStarPosition(1859, 2, "Kentucky",       6*h_step, 5*v_step, 1, 0, 1);		// 5.5
+        updateStarPosition(1859, 2, "Oregon",         7*h_step, 6*v_step, 1, 0, 1);		// corner
+        
+        updateStarPosition(1859, 2, "Ohio",           1*h_step, 7*v_step, 1, 0, 1);		// corner
+        updateStarPosition(1859, 2, "Tennessee",      2*h_step, 5*v_step, 1, 0, 1);		// 5.1
+        updateStarPosition(1859, 2, "Illinois",       3*h_step, 6*v_step, 1, 0, 1);		// 6.1
+        updateStarPosition(1859, 2, "Arkansas",       4*h_step, 7*v_step, 1, 0, 1);		// 7.1
+        updateStarPosition(1859, 2, "Florida",        4*h_step, 6*v_step, 1, 0, 1);		// 6.2
+        updateStarPosition(1859, 2, "Wisconsin",      5*h_step, 6*v_step, 1, 0, 1);		// 6.3
+        updateStarPosition(1859, 2, "California",     7*h_step, 7*v_step, 1, 0, 1);		// conrer
+    }
+
+    buildFlag1859_33_3 = function() {
+        var h_step = union_flag_w/8;
+        var v_step = union_flag_h/8;
+        updateStarPosition(1859, 3, "Delaware",       1*h_step, 2*v_step, 1, 0, 1);		// corner
+        updateStarPosition(1859, 3, "Georgia", 	      3*h_step, 2*v_step, 1, 0, 1);		// 2.1
+        updateStarPosition(1859, 3, "Pennsylvania",   4*h_step, 2*v_step, 1, 0, 1);		// 2.2
+        updateStarPosition(1859, 3, "Connecticut",    4*h_step, 1*v_step, 1, 0, 1);		// 1.1
+        updateStarPosition(1859, 3, "New Jersey",     5*h_step, 2*v_step, 1, 0, 1);		// 2.3
+        updateStarPosition(1859, 3, "Maine", 		  6*h_step, 3*v_step, 1, 0, 1);		// 3.5
+        updateStarPosition(1859, 3, "Iowa", 		  7*h_step, 2*v_step, 1, 0, 1);		// corner
+        
+        updateStarPosition(1859, 3, "Massachusetts",  1*h_step, 3*v_step, 1, 0, 1);		// corner
+        updateStarPosition(1859, 3, "Maryland", 	  2*h_step, 3*v_step, 1, 0, 1);		// 3.1
+        updateStarPosition(1859, 3, "South Carolina", 3*h_step, 3*v_step, 1, 0, 1);		// 3.2
+        updateStarPosition(1859, 3, "Vermont", 		  4*h_step, 3*v_step, 1, 0, 1);		// 3.3
+        updateStarPosition(1859, 3, "Michigan",       5*h_step, 3*v_step, 1, 0, 1);		// 3.4
+        updateStarPosition(1859, 3, "Minnesota",      7*h_step, 4*v_step, 1, 0, 1);		// 4.7
+        updateStarPosition(1859, 3, "Texas",          7*h_step, 3*v_step, 1, 0, 1);		// corner
+        
+        updateStarPosition(1859, 3, "New York",       2*h_step, 4*v_step, 1, 0, 1);		// 4.2
+        updateStarPosition(1859, 3, "New Hampshire",  3*h_step, 4*v_step, 1, 0, 1);		// 4.3
+        updateStarPosition(1859, 3, "North Carolina", 4*h_step, 4*v_step, 1, 0, 1);		// 4.4
+        updateStarPosition(1859, 3, "Alabama",        5*h_step, 4*v_step, 1, 0, 1);		// 4.5
+        updateStarPosition(1859, 3, "Missouri",       6*h_step, 4*v_step, 1, 0, 1);		// 4.6
+        
+        updateStarPosition(1859, 3, "Indiana",        1*h_step, 5*v_step, 1, 0, 1);		// corner
+        updateStarPosition(1859, 3, "Louisiana",      1*h_step, 4*v_step, 1, 0, 1);		// 4.7
+        updateStarPosition(1859, 3, "Mississippi",    3*h_step, 5*v_step, 1, 0, 1);		// 5.2
+        updateStarPosition(1859, 3, "Virginia",       4*h_step, 5*v_step, 1, 0, 1);		// 5.3
+        updateStarPosition(1859, 3, "Rhode Island",   5*h_step, 5*v_step, 1, 0, 1);		// 5.4
+        updateStarPosition(1859, 3, "Kentucky",       6*h_step, 5*v_step, 1, 0, 1);		// 5.5
+        updateStarPosition(1859, 3, "Oregon",         7*h_step, 5*v_step, 1, 0, 1);		// corner
+        
+        updateStarPosition(1859, 3, "Ohio",           1*h_step, 6*v_step, 1, 0, 1);		// corner
+        updateStarPosition(1859, 3, "Tennessee",      2*h_step, 5*v_step, 1, 0, 1);		// 5.1
+        updateStarPosition(1859, 3, "Illinois",       3*h_step, 6*v_step, 1, 0, 1);		// 6.1
+        updateStarPosition(1859, 3, "Arkansas",       4*h_step, 7*v_step, 1, 0, 1);		// 7.1
+        updateStarPosition(1859, 3, "Florida",        4*h_step, 6*v_step, 1, 0, 1);		// 6.2
+        updateStarPosition(1859, 3, "Wisconsin",      5*h_step, 6*v_step, 1, 0, 1);		// 6.3
+        updateStarPosition(1859, 3, "California",     7*h_step, 6*v_step, 1, 0, 1);		// conrer
     }
     
     buildFlag1861_34_1 = function() {
@@ -983,6 +1206,54 @@
         updateStarPosition(1867, 1, "California", 13*h_step, 4.5*v_step, 1, 0, 1);
         updateStarPosition(1867, 1, "Oregon", 15*h_step, 4.5*v_step, 1, 0, 1);
     }
+
+	buildFlag1867_37_2 = function() {
+		var cx = union_flag_w/2;
+        var cy = union_flag_h/2;
+        var r2 = union_flag_h*0.42;
+        var r1 = union_flag_h*0.25;
+        updateStarPosition(1867, 2, "Delaware",       cx + r2*Math.cos(19*Math.PI/24), cy - r2*Math.sin(19*Math.PI/24), 0.9, 0, 1); // 		r2  4
+        updateStarPosition(1867, 2, "Georgia",        cx + r2*Math.cos(17*Math.PI/24), cy - r2*Math.sin(17*Math.PI/24), 0.9, 0, 1); // 		r2  3
+        updateStarPosition(1867, 2, "Pennsylvania",   cx + r2*Math.cos(15*Math.PI/24), cy - r2*Math.sin(15*Math.PI/24), 0.9, 0, 1); // 		r2  2
+        updateStarPosition(1867, 2, "Connecticut",    cx + r2*Math.cos(13*Math.PI/24), cy - r2*Math.sin(13*Math.PI/24), 0.9, 0, 1); // 		r2  1
+        updateStarPosition(1867, 2, "New Jersey",     cx + r2*Math.cos(11*Math.PI/24), cy - r2*Math.sin(11*Math.PI/24), 0.9, 0, 1); // 		r2 24
+        updateStarPosition(1867, 2, "Maine",          cx + r2*Math.cos( 9*Math.PI/24), cy - r2*Math.sin( 9*Math.PI/24), 0.9, 0, 1); // 		r2 23
+        updateStarPosition(1867, 2, "Iowa",           cx + r2*Math.cos( 7*Math.PI/24), cy - r2*Math.sin( 7*Math.PI/24), 0.9, 0, 1); // 		r2 22
+        updateStarPosition(1867, 2, "Texas",          cx + r2*Math.cos( 5*Math.PI/24), cy - r2*Math.sin( 5*Math.PI/24), 0.9, 0, 1); // 		r2 21
+        
+        updateStarPosition(1867, 2, "New York",	      cx + r2*Math.cos(21*Math.PI/24), cy - r2*Math.sin(21*Math.PI/24), 0.9, 0, 1); // 		r2  5
+        updateStarPosition(1867, 2, "Massachusetts",  cx + r1*Math.cos(21*Math.PI/26), cy - r1*Math.sin(21*Math.PI/26), 0.9, 0, 1); // r1  3
+        updateStarPosition(1867, 2, "Maryland",       cx + r1*Math.cos(17*Math.PI/26), cy - r1*Math.sin(17*Math.PI/26), 0.9, 0, 1); // r1  2
+        updateStarPosition(1867, 2, "South Carolina", cx + r1*Math.cos(13*Math.PI/26), cy - r1*Math.sin(13*Math.PI/26), 0.9, 0, 1); // r1  1
+        updateStarPosition(1867, 2, "Vermont",        cx + r1*Math.cos(61*Math.PI/26), cy - r1*Math.sin(61*Math.PI/26), 0.9, 0, 1); // r1 13
+        updateStarPosition(1867, 2, "Michigan",       cx + r1*Math.cos(57*Math.PI/26), cy - r1*Math.sin(57*Math.PI/26), 0.9, 0, 1); // r1 12
+        updateStarPosition(1867, 2, "Minnesota",      cx + r2*Math.cos(51*Math.PI/24), cy - r2*Math.sin( 3*Math.PI/24), 0.9, 0, 1); // 		r2 20
+        
+        updateStarPosition(1867, 2, "New Hampshire",  cx + r2*Math.cos(23*Math.PI/24), cy - r2*Math.sin(23*Math.PI/24), 0.9, 0, 1); // 		r2  6
+        updateStarPosition(1867, 2, "North Carolina", cx + r2*Math.cos(25*Math.PI/24), cy - r2*Math.sin(25*Math.PI/24), 0.9, 0, 1); // 		r2  7
+        updateStarPosition(1867, 2, "Alabama",        cx + r1*Math.cos(25*Math.PI/26), cy - r1*Math.sin(25*Math.PI/26), 0.9, 0, 1); // r1  4
+        updateStarPosition(1867, 2, "Missouri",       cx + r1*Math.cos(53*Math.PI/26), cy - r1*Math.sin(53*Math.PI/26), 0.9, 0, 1); // r1 11
+        updateStarPosition(1867, 2, "Kansas",         cx + r1*Math.cos(49*Math.PI/26), cy - r1*Math.sin(49*Math.PI/26), 0.9, 0, 1); // r1 10
+        updateStarPosition(1867, 2, "West Virginia",  cx + r2*Math.cos(49*Math.PI/24), cy - r2*Math.sin( 1*Math.PI/24), 0.9, 0, 1); // 		r2 19
+        updateStarPosition(1867, 2, "Nevada",         cx + r2*Math.cos(47*Math.PI/24), cy - r2*Math.sin(47*Math.PI/24), 0.9, 0, 1); // 		r2 18
+        
+        updateStarPosition(1867, 2, "Indiana",        cx + r2*Math.cos(27*Math.PI/24), cy - r2*Math.sin(27*Math.PI/24), 0.9, 0, 1); // 		r2  8
+        updateStarPosition(1867, 2, "Louisiana",      cx + r1*Math.cos(29*Math.PI/26), cy - r1*Math.sin(29*Math.PI/26), 0.9, 0, 1); // r1  5
+        updateStarPosition(1867, 2, "Mississippi",    cx + r1*Math.cos(33*Math.PI/26), cy - r1*Math.sin(33*Math.PI/26), 0.9, 0, 1); // r1  6
+        updateStarPosition(1867, 2, "Virginia",       cx + r1*Math.cos(37*Math.PI/26), cy - r1*Math.sin(37*Math.PI/26), 0.9, 0, 1); // r1  7
+        updateStarPosition(1867, 2, "Rhode Island",   cx + r1*Math.cos(41*Math.PI/26), cy - r1*Math.sin(41*Math.PI/26), 0.9, 0, 1); // r1  8
+        updateStarPosition(1867, 2, "Kentucky",       cx + r1*Math.cos(45*Math.PI/26), cy - r1*Math.sin(45*Math.PI/26), 0.9, 0, 1); // r1  9
+        updateStarPosition(1867, 2, "Nebraska",       cx + r2*Math.cos(45*Math.PI/24), cy - r2*Math.sin(45*Math.PI/24), 0.9, 0, 1); // 		r2  17
+        
+        updateStarPosition(1867, 2, "Ohio",           cx + r2*Math.cos(29*Math.PI/24), cy - r2*Math.sin(29*Math.PI/24), 0.9, 0, 1); // 		r2  9
+        updateStarPosition(1867, 2, "Tennessee",      cx + r2*Math.cos(31*Math.PI/24), cy - r2*Math.sin(31*Math.PI/24), 0.9, 0, 1); // 		r2 10
+        updateStarPosition(1867, 2, "Illinois",       cx + r2*Math.cos(33*Math.PI/24), cy - r2*Math.sin(33*Math.PI/24), 0.9, 0, 1); // 		r2 11
+        updateStarPosition(1867, 2, "Arkansas",       cx + r2*Math.cos(35*Math.PI/24), cy - r2*Math.sin(35*Math.PI/24), 0.9, 0, 1); // 		r2 12
+        updateStarPosition(1867, 2, "Florida",        cx + r2*Math.cos(37*Math.PI/24), cy - r2*Math.sin(37*Math.PI/24), 0.9, 0, 1); // 		r2 13
+        updateStarPosition(1867, 2, "Wisconsin",      cx + r2*Math.cos(39*Math.PI/24), cy - r2*Math.sin(39*Math.PI/24), 0.9, 0, 1); // 		r2 14
+        updateStarPosition(1867, 2, "California",     cx + r2*Math.cos(41*Math.PI/24), cy - r2*Math.sin(41*Math.PI/24), 0.9, 0, 1); // 		r2 15
+        updateStarPosition(1867, 2, "Oregon",         cx + r2*Math.cos(43*Math.PI/24), cy - r2*Math.sin(43*Math.PI/24), 0.9, 0, 1); // 		r2 16
+    }
     
     buildFlag1877_38_1 = function() {
         var h_step = union_flag_w/16;
@@ -1029,6 +1300,104 @@
         updateStarPosition(1877, 1, "Wisconsin", 11*h_step, 4.5*v_step, 1, 0, 1);
         updateStarPosition(1877, 1, "California", 13*h_step, 4.5*v_step, 1, 0, 1);
         updateStarPosition(1877, 1, "Oregon", 15*h_step, 4.5*v_step, 1, 0, 1);
+    }
+
+    buildFlag1877_38_2 = function() {
+        var h_step = union_flag_w/16;
+        var v_step = union_flag_h/5;
+        updateStarPosition(1877, 2, "Delaware", 2*h_step, 0.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Georgia", 4*h_step, 0.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Pennsylvania", 6*h_step, 0.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Connecticut", 8*h_step, 0.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "New Jersey", 10*h_step, 0.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Maine", 12*h_step, 0.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Iowa", 14*h_step, 0.5*v_step, 1, 0, 1);
+        
+        updateStarPosition(1877, 2, "New York", 1*h_step, 1.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Massachusetts", 3*h_step, 1.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Maryland", 5*h_step, 1.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "South Carolina", 7*h_step, 1.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Vermont", 9*h_step, 1.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Michigan", 11*h_step, 1.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Minnesota", 13*h_step, 1.5*v_step, 1, 0, 1);
+		updateStarPosition(1877, 2, "Texas", 15*h_step, 1.5*v_step, 1, 0, 1);
+        
+        updateStarPosition(1877, 2, "New Hampshire", 1*h_step, 2.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "North Carolina", 3*h_step, 2.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Alabama", 5*h_step, 2.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Missouri", 7*h_step, 2.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Kansas", 9*h_step, 2.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "West Virginia", 11*h_step, 2.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Nevada", 13*h_step, 2.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Colorado", 15*h_step, 2.5*v_step, 1, 0, 1);
+        
+        updateStarPosition(1877, 2, "Indiana", 1*h_step, 3.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Louisiana", 3*h_step, 3.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Mississippi", 5*h_step, 3.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Virginia", 7*h_step, 3.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Rhode Island", 9*h_step, 3.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Kentucky", 11*h_step, 3.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Nebraska", 13*h_step, 3.5*v_step, 1, 0, 1);
+		updateStarPosition(1877, 2, "Oregon", 15*h_step, 3.5*v_step, 1, 0, 1);
+        
+        updateStarPosition(1877, 2, "Ohio", 2*h_step, 4.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Tennessee", 4*h_step, 4.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Illinois", 6*h_step, 4.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Arkansas", 8*h_step, 4.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Florida", 10*h_step, 4.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "Wisconsin", 12*h_step, 4.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 2, "California", 14*h_step, 4.5*v_step, 1, 0, 1);
+    }
+
+	buildFlag1877_38_3 = function() {
+        var h_step = union_flag_w/16;
+        var v_step = union_flag_h/5;
+		var cx = union_flag_w/2;
+        var cy = union_flag_h/2;
+        var r2 = union_flag_h*0.42;
+        var r1 = union_flag_h*0.25;
+        updateStarPosition(1877, 1, "Delaware",       1*h_step, 0.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 1, "Georgia",        cx + r2*Math.cos( 13*Math.PI/20), cy - r2*Math.sin( 13*Math.PI/20), 0.9,  1*180/40, 1); // 			r2  2
+        updateStarPosition(1877, 1, "Pennsylvania",   cx + r2*Math.cos( 11*Math.PI/20), cy - r2*Math.sin( 11*Math.PI/20), 0.9, -1*180/40, 1); // 			r2  1
+        updateStarPosition(1877, 1, "Connecticut",    cx + r2*Math.cos(  9*Math.PI/20), cy - r2*Math.sin(  9*Math.PI/20), 0.9,         0, 1); // 			r2 20
+        updateStarPosition(1877, 1, "New Jersey",     cx + r2*Math.cos(  7*Math.PI/20), cy - r2*Math.sin(  7*Math.PI/20), 0.9,         0, 1); // 			r2 19
+        updateStarPosition(1877, 1, "Maine",          cx + r2*Math.cos(  5*Math.PI/20), cy - r2*Math.sin(  5*Math.PI/20), 0.9,         0, 1); // 			r2 18
+        updateStarPosition(1877, 1, "Iowa",           15*h_step, 0.5*v_step, 1, 0, 1);
+        
+        updateStarPosition(1877, 1, "New York",       cx + r2*Math.cos( 17*Math.PI/20), cy - r2*Math.sin( 17*Math.PI/20), 0.9,         0, 1); // 		r2  4
+        updateStarPosition(1877, 1, "Massachusetts",  cx + r2*Math.cos( 15*Math.PI/20), cy - r2*Math.sin( 15*Math.PI/20), 0.9,         0, 1); // 		r2  3
+        updateStarPosition(1877, 1, "Maryland",       cx + r1*Math.cos( 19*Math.PI/26), cy - r1*Math.sin( 19*Math.PI/26), 0.9,  4*180/26, 1); // r1  8
+        updateStarPosition(1877, 1, "South Carolina", cx + r1*Math.cos( 15*Math.PI/26), cy - r1*Math.sin( 15*Math.PI/26), 0.9, -1*180/26, 1); // r1  7
+        updateStarPosition(1877, 1, "Vermont",        cx + r1*Math.cos( 11*Math.PI/26), cy - r1*Math.sin( 11*Math.PI/26), 0.9,  1*180/26, 1); // r1  6
+        updateStarPosition(1877, 1, "Michigan",       cx + r1*Math.cos(  7*Math.PI/26), cy - r1*Math.sin(  7*Math.PI/26), 0.9, -4*180/26, 1); // r1  5
+        updateStarPosition(1877, 1, "Minnesota",      cx + r2*Math.cos(  3*Math.PI/20), cy - r2*Math.sin(  3*Math.PI/20), 0.9,         0, 1); // 		r2 17
+		updateStarPosition(1877, 1, "Texas",          cx + r2*Math.cos(  1*Math.PI/20), cy - r2*Math.sin(  1*Math.PI/20), 0.9,         0, 1); // 		r2 16
+        
+        updateStarPosition(1877, 1, "New Hampshire",  cx + r2*Math.cos( 19*Math.PI/20), cy - r2*Math.sin( 19*Math.PI/20), 0.9,         0, 1); // 		r2  5
+        updateStarPosition(1877, 1, "North Carolina", cx + r1*Math.cos( 23*Math.PI/26), cy - r1*Math.sin( 23*Math.PI/26), 0.9,         0, 1); // r1  9
+        updateStarPosition(1877, 1, "Alabama",        cx + r1*Math.cos( 27*Math.PI/26), cy - r1*Math.sin( 27*Math.PI/26), 0.9,  7*180/26, 1); // r1 10
+        updateStarPosition(1877, 1, "Missouri",       cx + r1*Math.cos( 31*Math.PI/26), cy - r1*Math.sin( 31*Math.PI/26), 0.9,  3*180/26, 1); // r1 11
+        updateStarPosition(1877, 1, "Kansas", 		  cx                              , cy                              , 1.5,    180/ 5, 1); // center
+        updateStarPosition(1877, 1, "West Virginia",  cx + r1*Math.cos( -1*Math.PI/26), cy - r1*Math.sin( -1*Math.PI/26), 0.9,  4*180/26, 1); // r1  3
+        updateStarPosition(1877, 1, "Nevada",         cx + r1*Math.cos(  3*Math.PI/26), cy - r1*Math.sin(  3*Math.PI/26), 0.9,  0*180/26, 1); // r1  4
+        updateStarPosition(1877, 1, "Colorado",       cx + r2*Math.cos( 39*Math.PI/20), cy - r2*Math.sin( 39*Math.PI/20), 0.9,       0, 1); // 			r2 15
+        
+        updateStarPosition(1877, 1, "Indiana",        cx + r2*Math.cos( 21*Math.PI/20), cy - r2*Math.sin( 21*Math.PI/20), 0.9,        0, 1); // 		r2  6
+        updateStarPosition(1877, 1, "Louisiana",      cx + r2*Math.cos( 23*Math.PI/20), cy - r2*Math.sin( 23*Math.PI/20), 0.9,        0, 1); // 		r2  7
+        updateStarPosition(1877, 1, "Mississippi",    cx + r1*Math.cos( 35*Math.PI/26), cy - r1*Math.sin( 35*Math.PI/26), 0.9, -1*180/26, 1); // r1 12
+        updateStarPosition(1877, 1, "Virginia",       cx + r1*Math.cos(-13*Math.PI/26), cy - r1*Math.sin(-13*Math.PI/26), 0.9,  5*180/26, 1); // r1 13
+        updateStarPosition(1877, 1, "Rhode Island",   cx + r1*Math.cos( -9*Math.PI/26), cy - r1*Math.sin( -9*Math.PI/26), 0.9,  1*180/26, 1); // r1  1
+        updateStarPosition(1877, 1, "Kentucky",       cx + r1*Math.cos( -5*Math.PI/26), cy - r1*Math.sin( -5*Math.PI/26), 0.9, -3*180/26, 1); // r1  2
+        updateStarPosition(1877, 1, "Nebraska",       cx + r2*Math.cos( 35*Math.PI/20), cy - r2*Math.sin( 35*Math.PI/20), 0.9,         0, 1); // 		r2 13
+		updateStarPosition(1877, 1, "Oregon",         cx + r2*Math.cos( 37*Math.PI/20), cy - r2*Math.sin( 37*Math.PI/20), 0.9,         0, 1); // 		r2 14
+        
+        updateStarPosition(1877, 1, "Ohio",           1*h_step, 4.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 1, "Tennessee",      cx + r2*Math.cos( 25*Math.PI/20), cy - r2*Math.sin( 25*Math.PI/20), 0.9,       0, 1); // 			r2  8
+        updateStarPosition(1877, 1, "Illinois",       cx + r2*Math.cos( 27*Math.PI/20), cy - r2*Math.sin( 27*Math.PI/20), 0.9,       0, 1); // 			r2  9
+        updateStarPosition(1877, 1, "Arkansas",       cx + r2*Math.cos( 29*Math.PI/20), cy - r2*Math.sin( 29*Math.PI/20), 0.9,       0, 1); // 			r2 10
+        updateStarPosition(1877, 1, "Florida",        cx + r2*Math.cos( 31*Math.PI/20), cy - r2*Math.sin( 31*Math.PI/20), 0.9,       0, 1); // 			r2 11
+        updateStarPosition(1877, 1, "Wisconsin",      cx + r2*Math.cos( 33*Math.PI/20), cy - r2*Math.sin( 33*Math.PI/20), 0.9,       0, 1); // 			r2 12
+        updateStarPosition(1877, 1, "California",     15*h_step, 4.5*v_step, 1, 0, 1);
     }
     
     buildFlag1890_43_1 = function() {
@@ -1432,6 +1801,8 @@
 
       
     buildFlag1776_13_1();
+    buildFlag1776_13_2();
+    buildFlag1776_13_3();
     buildFlag1795_15_1();
     buildFlag1818_20_1();
     buildFlag1819_21_1();
@@ -1439,18 +1810,25 @@
     buildFlag1822_24_1();
     buildFlag1836_25_1();
     buildFlag1837_26_1();
+    buildFlag1837_26_2();
     buildFlag1845_27_1();
     buildFlag1846_28_1();
     buildFlag1847_29_1();
+	buildFlag1847_29_2();
     buildFlag1848_30_1();
     buildFlag1851_31_1();
     buildFlag1858_32_1();
     buildFlag1859_33_1();
+    buildFlag1859_33_2();
+ 	buildFlag1859_33_3();
     buildFlag1861_34_1();
     buildFlag1863_35_1();
     buildFlag1865_36_1();
     buildFlag1867_37_1();
+	buildFlag1867_37_2();
     buildFlag1877_38_1();
+    buildFlag1877_38_2();
+	buildFlag1877_38_3();
     buildFlag1890_43_1();
     buildFlag1891_44_1();
     buildFlag1896_45_1();
