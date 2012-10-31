@@ -27,34 +27,26 @@
   fill: red;
 }
 
-#slider {
-  display: inline-block;
-  width: 600px;
-}
 
-#year {
-  position: relative;
-}
 
 
 .star {
   fill: white;
-  stroke: black;
+  stroke: white;
 }
 
 .active {
-  fill: yellow;
+  fill: #dede7c;
+}
+
+text {
+  font-family: Verdana;
 }
 
 </style>
 <body>
   <div id="svg_container"></div>
-  <div style="text-align:center">
-    <div>Year</div>
-    <div style="display: inline-block" id="year"></div>
-    <div/>
-<span class="years">1750</span><input id="slider" type="range" min="1750" max="2012" step="1" value="1750" style="vertical-align: bottom" /><span class="years">2012</span>
-</div>
+
 <script>
 
   var albers_ratio = 960/500
@@ -196,6 +188,8 @@
   var slider_marker = slider_group.append('g')
   var slider_marker_color = 'red'
 
+  var slider_periods_group = slider_group.append('g')
+
   slider_marker.append('line')
     .attr('stroke', slider_marker_color)
     .attr('stroke_width', '3')
@@ -212,6 +206,21 @@
                             .attr("transform", "translate(0, " + slider_height +")scale(1, -1)")
 
   slider_marker.node().appendChild(bottom_triangle.node())
+
+  var slider_text = slider_marker.append('g')
+                      .attr('transform', "translate(0, " + (slider_height + 20) +")")
+
+  slider_text.append('rect')
+      .attr('stroke', 'red')
+      .attr('stroke-width', 3)
+      .attr('fill' , 'white')
+      .attr('rx', 5)
+      .attr('ry', 5)
+      .attr('width', 300)
+      .attr('height', 70)
+
+
+
 
 
 
@@ -232,21 +241,33 @@
     join_years = json
 
     var slider_data = []
-    slider_data.push({start: 1750, end: 1776})
+    slider_data.push({start: 1750, end: 1776, text:  ["Period:     - 1776",  "Still waiting for independence!"]})
+    var state_counter = 0;
     for (var i = 1; i < join_years.length; i++) {
-      slider_data.push({ start: join_years[i-1].year, end: join_years[i].year})
+      var start =  join_years[i-1].year
+      var end = join_years[i].year
+      var new_states = join_years[i-1].states
+      state_counter += new_states.length
+      slider_data.push({ start: start,
+                         end: end,
+                         new_states: new_states,
+                         text: ["Period: " + start + " - " + end ,
+                               // "States joining the union: " + new_states ,
+                               "States in the Union: " + state_counter ]})
     };
-    slider_data.push({start: 1960, end: 2012})
+    slider_data.push({start: 1960, end: 2012, text: ["Period: 1960 -     ",
+                               // "States joining the union: " + new_states ,
+                               "States in the Union: " + state_counter ]})
     console.log(slider_data)
 
-    slider_group.selectAll("rect")
+    slider_periods_group.selectAll("rect")
     .data(slider_data)
     .enter().append("rect")
     .attr('fill', function(d, i){  
       if (i%2===0)  
-        return '#5adbb0' 
+        return '#73a695' 
       else  
-        return '#4d8f79'})
+        return '#4a6b60'})
     .attr('x', function(d) { return x_slider(d.start)})
     .attr('y', 0)
     .attr('height', slider_height)
@@ -1867,56 +1888,105 @@
 
 function run() {
 
-    year = 1750
+    year = 1752
 
-    slider_group.selectAll("rect")
+    slider_periods_group.selectAll("rect")
       .on('click', function(d){ year = d.start; update()})
 
     var slider_drag = d3.behavior.drag().on("drag", function(d){
-      year = x_slider.invert(d3.event.x)
+      year = Math.round(x_slider.invert(d3.event.x))
       update()
 
     });
 
     slider_marker.call(slider_drag)
 
+    alternate_versions = {1776: 3, 1837: 2, 1847:2 , 1859: 3, 1867: 2, 1877:3}
 
-    // slider_marker.on('mousedown', function(e) {
-    //   year = x_slider.invert(this.clientX)
-    //   console.log("ClientX: " + this.clientX)
-    //   console.log(year)
-    //   update()
-    // })
 
-    function update() {
-      slider_group.selectAll("rect")
+    function update_slider()
+    {
+      slider_periods_group.selectAll("rect")
         .classed('active', function(d){ return  d.start <= year && d.end > year})
+        .each(function(d) { 
+          if(d.start <= year && d.end > year) 
+          {
+              var sel = slider_text.selectAll('text')
+                .data(d.text)
+                
+              sel.exit().remove()
 
+              sel.enter()
+                .append('text')
+                .attr('xml:space', 'preserve')
+                .attr('y', function(d,i){return i* 15 + 20})
+                .attr('x', 10)
+
+              sel.text(String)
+
+              if (alternate_versions[d.start] > 1) {
+                var num_versions = alternate_versions[d.start]
+                slider_text.append('text')
+                .attr('x',10)
+                .attr('y', d.text.length *15 + 20)
+                .attr('xml:space', 'preserve')
+                .attr('font-weight', 'bold')
+                .attr('text-decoration', 'underline')
+                .attr('fill', 'blue')
+                .text('Show alternate flag')
+                .on("click", function(){
+                  console.log("Toggle")
+                  toggle_flag(d.start)
+                })
+              };
+
+              slider_text.select("rect")
+                .attr('height', slider_text.selectAll("text")[0].length * 20)
+                .attr('width', d3.max(slider_text.selectAll("text")[0], function(el){return el.textLength.baseVal.value}) + 20)
+          }
+        })
       slider_marker.attr("transform", "translate(" + x_slider(year) +",0)")
 
       slider_marker.node().parentNode.appendChild(slider_marker.node())
-
-
+    }
+    function update() {
+      
+      update_slider()
       map_callback(year)
       flag_callback(year)
     }
-    
-    var update_year = function(_year){
-      year_el.text(_year)
-      var slider_width = parseInt(slider.style("width").slice(0, -2))
-      var min = parseInt(slider.attr("min"))
-      var max = parseInt(slider.attr("max"))
-      var slider_pos = (_year - min) / (max - min) * slider_width
-      year_el.style("left", (slider_pos - slider_width / 2) + "px") 
-    }
-    slider.value = 1750
-    update_year(parseInt(slider.value))
-    slider.on("change", function(){ 
-      var year = parseInt(this.value); 
-      update_year(year);
-      map_callback(year);
-      flag_callback(year);
-    }, false);
+
+    update_slider()
+
+
+    // Allow the arrow keys to change the displayed year.
+    d3.select(window).on("keydown", function() {
+        console.log(d3.event.keyCode)
+      switch (d3.event.keyCode) {
+        case 37: {
+          console.log("left")
+          var past_periods = join_years.filter( function(d) { return d.year <= year})
+          if (past_periods.length > 1) {
+            year = past_periods[past_periods.length - 2].year
+          }
+          if (past_periods.length === 1) {
+            year = 1752
+          }
+          update();
+          break;
+        }
+        case 39: {
+          var future_periods = join_years.filter( function(d) { return d.year > year})
+          if (future_periods.length > 0) {
+            year = future_periods[0].year
+          }
+          update();
+          break;
+        }
+      }
+      
+    });
+
 
 
     function map_callback(year) {
