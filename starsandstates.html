@@ -10,25 +10,43 @@
 }
 
 #states {
-  fill: #aaa;
+  fill: #d2d6d6;
   stroke: #fff;
   stroke-width: 1.5px;
 }
 
-#states .past {
-  fill: steelblue;
+#states path {
+  opacity: 0.80;
 }
 
-#states .new {
-  fill: red;
+#states path.past {
+  fill: #002c77;
+  opacity: 1;
 }
 
-#states .motion {
-  fill: red;
+#states path.new {
+  fill: #cc0c2f;
+  opacity: 1;
+}
+
+#states path.motion {
+  fill: #cc0c2f;
+  opacity: 1;
 }
 
 
+html,
+body {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
 
+svg {
+  display: inline-block;
+  margin-top: 100px;
+}
 
 .star {
   fill: white;
@@ -45,13 +63,14 @@ text {
 
 </style>
 <body>
-  <div id="svg_container"></div>
-
+<!--   <div id="svg-container"></div>
+ -->
 <script>
 
   var albers_ratio = 960/500
   var svg_width = 1300,
-      svg_height = 1000
+      svg_height = 900
+
 
 //Map setup
 //------------------------------------------------------
@@ -68,9 +87,10 @@ text {
   var path = d3.geo.path()
       .projection(projection);
 
-  var svg = d3.select("#svg_container").append("svg")
+  var svg = d3.select("body").append("svg")
       .attr("width", svg_width)
-      .attr("height", svg_height);
+      .attr("height", svg_height)
+
 
   svg.append("rect")
       .attr("class", "background")
@@ -179,14 +199,14 @@ text {
   var slider_group = svg.append('g')
                         .attr("transform", "translate(0, " + (flag_height + 20) + ")")
 
-  var slider_height = 60
+  var slider_height = 40
 
   var x_slider = d3.scale.linear()
-                 .range([0, flag_width])
+                 .range([50, flag_width -50])
                  .domain([1750, 2012])
 
   var slider_marker = slider_group.append('g')
-  var slider_marker_color = 'red'
+  var slider_marker_color = '#cc0c2f'
 
   var slider_periods_group = slider_group.append('g')
 
@@ -211,7 +231,7 @@ text {
                       .attr('transform', "translate(0, " + (slider_height + 20) +")")
 
   slider_text.append('rect')
-      .attr('stroke', 'red')
+      .attr('stroke', slider_marker_color)
       .attr('stroke-width', 3)
       .attr('fill' , 'white')
       .attr('rx', 5)
@@ -272,6 +292,26 @@ text {
     .attr('y', 0)
     .attr('height', slider_height)
     .attr('width', function(d){return x_slider(d.end) - x_slider(d.start)})
+
+    slider_periods_group.selectAll('line')
+      .data(d3.range(1760, 2012, 10))
+      .enter()
+      .append('line')
+      .classed('tick')
+      .attr('x1', x_slider)
+      .attr('x2', x_slider)
+      .attr('y1', slider_height)
+      .attr('y2', slider_height + 10)
+      .attr('stroke', black)
+
+    slider_periods_group.selectAll('text')
+      .data(d3.range(1760, 2012, 10))
+      .enter()
+      .append('text')
+      .classed('tick_text')
+      .attr('x', x_slider)
+      .attr('y', slider_height + 30)
+      .attr('stroke', black)
   })
   
   
