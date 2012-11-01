@@ -15,6 +15,12 @@
   stroke-width: 1.5px;
 }
 
+#outline {
+  /*fill: #d2d6d6;*/
+  stroke: #fff;
+  stroke-width: 5px;
+}
+
 #states path {
   opacity: 0.80;
 }
@@ -25,12 +31,14 @@
 }
 
 #states path.new {
-  fill: #cc0c2f;
+  /*fill: #cc0c2f;*/
+  fill: #0052E0;
   opacity: 1;
 }
 
 #states path.motion {
-  fill: #cc0c2f;
+  /*fill: #cc0c2f;*/
+  fill: #0052E0;
   opacity: 1;
 }
 
@@ -321,6 +329,7 @@ text {
   
   
   var flag_stars;
+
   
   d3.json("states_geo.json", function(json) {
     states_group.selectAll("path")
