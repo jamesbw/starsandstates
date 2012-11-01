@@ -54,7 +54,7 @@ svg {
 }
 
 .active {
-  fill: #dede7c;
+  fill: #ECEC93;
 }
 
 text {
@@ -285,9 +285,9 @@ text {
     .enter().append("rect")
     .attr('fill', function(d, i){  
       if (i%2===0)  
-        return '#73a695' 
+        return '#76BCB7' 
       else  
-        return '#4a6b60'})
+        return '#58ADA7'})
     .attr('x', function(d) { return x_slider(d.start)})
     .attr('y', 0)
     .attr('height', slider_height)
@@ -1938,7 +1938,7 @@ function run() {
       .on('click', function(d){ year = d.start; update()})
 
     var slider_drag = d3.behavior.drag().on("drag", function(d){
-      year = Math.round(x_slider.invert(d3.event.x))
+      year = Math.max(1752, Math.min( 2012, Math.round(x_slider.invert(d3.event.x))))
       update()
 
     });
@@ -1950,6 +1950,7 @@ function run() {
 
     function update_slider()
     {
+      var rect_width
       slider_periods_group.selectAll("rect")
         .classed('active', function(d){ return  d.start <= year && d.end > year})
         .each(function(d) { 
@@ -1984,14 +1985,25 @@ function run() {
                 })
               };
 
+              rect_width =  d3.max(slider_text.selectAll("text")[0], function(el){return el.textLength.baseVal.value}) + 20
+
               slider_text.select("rect")
                 .attr('height', slider_text.selectAll("text")[0].length * 20)
-                .attr('width', d3.max(slider_text.selectAll("text")[0], function(el){return el.textLength.baseVal.value}) + 20)
+                .attr('width', rect_width)
+
+              
+
+              slider_marker.attr("transform", "translate(" + x_slider(year) +",0)")
+              var correction = Math.max(x_slider(year) -  (x_slider(2012) - rect_width), 0);
+              slider_text.select("rect")
+                .attr('x', -correction)
+              slider_text.selectAll('text')
+                .attr('x', 10 - correction)
+              slider_marker.node().parentNode.appendChild(slider_marker.node())
           }
         })
-      slider_marker.attr("transform", "translate(" + x_slider(year) +",0)")
 
-      slider_marker.node().parentNode.appendChild(slider_marker.node())
+
     }
     function update() {
       
