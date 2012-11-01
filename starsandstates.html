@@ -69,10 +69,18 @@ text {
   font-family: Verdana;
 }
 
+#title {
+	text-transform: uppercase;
+}
+
 </style>
 <body>
 <!--   <div id="svg-container"></div>
  -->
+
+<h1 id="title">Stars &amp; Stripes</h1>
+
+
 <script>
 
   var albers_ratio = 960/500
@@ -1430,48 +1438,48 @@ text {
         var cy = union_flag_h/2;
         var r2 = union_flag_h*0.42;
         var r1 = union_flag_h*0.25;
-        updateStarPosition(1877, 1, "Delaware",       1*h_step, 0.5*v_step, 1, 0, 1);
-        updateStarPosition(1877, 1, "Georgia",        cx + r2*Math.cos( 13*Math.PI/20), cy - r2*Math.sin( 13*Math.PI/20), 0.9, -3*180/20, 1); // 		r2  2
-        updateStarPosition(1877, 1, "Pennsylvania",   cx + r2*Math.cos( 11*Math.PI/20), cy - r2*Math.sin( 11*Math.PI/20), 0.9, -1*180/20, 1); // 		r2  1
-        updateStarPosition(1877, 1, "Connecticut",    cx + r2*Math.cos(  9*Math.PI/20), cy - r2*Math.sin(  9*Math.PI/20), 0.9,  1*180/20, 1); // 		r2 20
-        updateStarPosition(1877, 1, "New Jersey",     cx + r2*Math.cos(  7*Math.PI/20), cy - r2*Math.sin(  7*Math.PI/20), 0.9,  3*180/20, 1); // 		r2 19
-        updateStarPosition(1877, 1, "Maine",          cx + r2*Math.cos(  5*Math.PI/20), cy - r2*Math.sin(  5*Math.PI/20), 0.9,  5*180/20, 1); // 		r2 18
-        updateStarPosition(1877, 1, "Iowa",           15*h_step, 0.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 3, "Delaware",       1*h_step, 0.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 3, "Georgia",        cx + r2*Math.cos( 13*Math.PI/20), cy - r2*Math.sin( 13*Math.PI/20), 0.9, -3*180/20, 1); // 		r2  2
+        updateStarPosition(1877, 3, "Pennsylvania",   cx + r2*Math.cos( 11*Math.PI/20), cy - r2*Math.sin( 11*Math.PI/20), 0.9, -1*180/20, 1); // 		r2  1
+        updateStarPosition(1877, 3, "Connecticut",    cx + r2*Math.cos(  9*Math.PI/20), cy - r2*Math.sin(  9*Math.PI/20), 0.9,  1*180/20, 1); // 		r2 20
+        updateStarPosition(1877, 3, "New Jersey",     cx + r2*Math.cos(  7*Math.PI/20), cy - r2*Math.sin(  7*Math.PI/20), 0.9,  3*180/20, 1); // 		r2 19
+        updateStarPosition(1877, 3, "Maine",          cx + r2*Math.cos(  5*Math.PI/20), cy - r2*Math.sin(  5*Math.PI/20), 0.9,  5*180/20, 1); // 		r2 18
+        updateStarPosition(1877, 3, "Iowa",           15*h_step, 0.5*v_step, 1, 0, 1);
         
-        updateStarPosition(1877, 1, "New York",       cx + r2*Math.cos( 17*Math.PI/20), cy - r2*Math.sin( 17*Math.PI/20), 0.9, -7*180/20, 1); // 		r2  4
-        updateStarPosition(1877, 1, "Massachusetts",  cx + r2*Math.cos( 15*Math.PI/20), cy - r2*Math.sin( 15*Math.PI/20), 0.9, -5*180/20, 1); // 		r2  3
-        updateStarPosition(1877, 1, "Maryland",       cx + r1*Math.cos( 19*Math.PI/26), cy - r1*Math.sin( 19*Math.PI/26), 0.9,  4*180/26, 1); // r1  8
-        updateStarPosition(1877, 1, "South Carolina", cx + r1*Math.cos( 15*Math.PI/26), cy - r1*Math.sin( 15*Math.PI/26), 0.9, -1*180/26, 1); // r1  7
-        updateStarPosition(1877, 1, "Vermont",        cx + r1*Math.cos( 11*Math.PI/26), cy - r1*Math.sin( 11*Math.PI/26), 0.9,  1*180/26, 1); // r1  6
-        updateStarPosition(1877, 1, "Michigan",       cx + r1*Math.cos(  7*Math.PI/26), cy - r1*Math.sin(  7*Math.PI/26), 0.9, -4*180/26, 1); // r1  5
-        updateStarPosition(1877, 1, "Minnesota",      cx + r2*Math.cos(  3*Math.PI/20), cy - r2*Math.sin(  3*Math.PI/20), 0.9,  7*180/20, 1); // 		r2 17
-		updateStarPosition(1877, 1, "Texas",          cx + r2*Math.cos(  1*Math.PI/20), cy - r2*Math.sin(  1*Math.PI/20), 0.9,  9*180/20, 1); // 		r2 16
+        updateStarPosition(1877, 3, "New York",       cx + r2*Math.cos( 17*Math.PI/20), cy - r2*Math.sin( 17*Math.PI/20), 0.9, -7*180/20, 1); // 		r2  4
+        updateStarPosition(1877, 3, "Massachusetts",  cx + r2*Math.cos( 15*Math.PI/20), cy - r2*Math.sin( 15*Math.PI/20), 0.9, -5*180/20, 1); // 		r2  3
+        updateStarPosition(1877, 3, "Maryland",       cx + r1*Math.cos( 19*Math.PI/26), cy - r1*Math.sin( 19*Math.PI/26), 0.9,  4*180/26, 1); // r1  8
+        updateStarPosition(1877, 3, "South Carolina", cx + r1*Math.cos( 15*Math.PI/26), cy - r1*Math.sin( 15*Math.PI/26), 0.9, -1*180/26, 1); // r1  7
+        updateStarPosition(1877, 3, "Vermont",        cx + r1*Math.cos( 11*Math.PI/26), cy - r1*Math.sin( 11*Math.PI/26), 0.9,  1*180/26, 1); // r1  6
+        updateStarPosition(1877, 3, "Michigan",       cx + r1*Math.cos(  7*Math.PI/26), cy - r1*Math.sin(  7*Math.PI/26), 0.9, -4*180/26, 1); // r1  5
+        updateStarPosition(1877, 3, "Minnesota",      cx + r2*Math.cos(  3*Math.PI/20), cy - r2*Math.sin(  3*Math.PI/20), 0.9,  7*180/20, 1); // 		r2 17
+		updateStarPosition(1877, 3, "Texas",          cx + r2*Math.cos(  1*Math.PI/20), cy - r2*Math.sin(  1*Math.PI/20), 0.9,  9*180/20, 1); // 		r2 16
         
-        updateStarPosition(1877, 1, "New Hampshire",  cx + r2*Math.cos( 19*Math.PI/20), cy - r2*Math.sin( 19*Math.PI/20), 0.9, -1*180/20, 1); // 		r2  5
-        updateStarPosition(1877, 1, "North Carolina", cx + r1*Math.cos( 23*Math.PI/26), cy - r1*Math.sin( 23*Math.PI/26), 0.9,         0, 1); // r1  9
-        updateStarPosition(1877, 1, "Alabama",        cx + r1*Math.cos( 27*Math.PI/26), cy - r1*Math.sin( 27*Math.PI/26), 0.9,  7*180/26, 1); // r1 10
-        updateStarPosition(1877, 1, "Missouri",       cx + r1*Math.cos( 31*Math.PI/26), cy - r1*Math.sin( 31*Math.PI/26), 0.9,  3*180/26, 1); // r1 11
-        updateStarPosition(1877, 1, "Kansas", 		  cx                              , cy                              , 1.5,    180/ 5, 1); // center
-        updateStarPosition(1877, 1, "West Virginia",  cx + r1*Math.cos( -1*Math.PI/26), cy - r1*Math.sin( -1*Math.PI/26), 0.9,  4*180/26, 1); // r1  3
-        updateStarPosition(1877, 1, "Nevada",         cx + r1*Math.cos(  3*Math.PI/26), cy - r1*Math.sin(  3*Math.PI/26), 0.9,  0*180/26, 1); // r1  4
-        updateStarPosition(1877, 1, "Colorado",       cx + r2*Math.cos( 39*Math.PI/20), cy - r2*Math.sin( 39*Math.PI/20), 0.9,  3*180/20, 1); // 			r2 15
+        updateStarPosition(1877, 3, "New Hampshire",  cx + r2*Math.cos( 19*Math.PI/20), cy - r2*Math.sin( 19*Math.PI/20), 0.9, -1*180/20, 1); // 		r2  5
+        updateStarPosition(1877, 3, "North Carolina", cx + r1*Math.cos( 23*Math.PI/26), cy - r1*Math.sin( 23*Math.PI/26), 0.9,         0, 1); // r1  9
+        updateStarPosition(1877, 3, "Alabama",        cx + r1*Math.cos( 27*Math.PI/26), cy - r1*Math.sin( 27*Math.PI/26), 0.9,  7*180/26, 1); // r1 10
+        updateStarPosition(1877, 3, "Missouri",       cx + r1*Math.cos( 31*Math.PI/26), cy - r1*Math.sin( 31*Math.PI/26), 0.9,  3*180/26, 1); // r1 11
+        updateStarPosition(1877, 3, "Kansas", 		  cx                              , cy                              , 1.5,    180/ 5, 1); // center
+        updateStarPosition(1877, 3, "West Virginia",  cx + r1*Math.cos( -1*Math.PI/26), cy - r1*Math.sin( -1*Math.PI/26), 0.9,  4*180/26, 1); // r1  3
+        updateStarPosition(1877, 3, "Nevada",         cx + r1*Math.cos(  3*Math.PI/26), cy - r1*Math.sin(  3*Math.PI/26), 0.9,  0*180/26, 1); // r1  4
+        updateStarPosition(1877, 3, "Colorado",       cx + r2*Math.cos( 39*Math.PI/20), cy - r2*Math.sin( 39*Math.PI/20), 0.9,  3*180/20, 1); // 			r2 15
         
-        updateStarPosition(1877, 1, "Indiana",        cx + r2*Math.cos( 21*Math.PI/20), cy - r2*Math.sin( 21*Math.PI/20), 0.9, -3*180/20, 1); // 		r2  6
-        updateStarPosition(1877, 1, "Louisiana",      cx + r2*Math.cos( 23*Math.PI/20), cy - r2*Math.sin( 23*Math.PI/20), 0.9, -5*180/20, 1); // 		r2  7
-        updateStarPosition(1877, 1, "Mississippi",    cx + r1*Math.cos( 35*Math.PI/26), cy - r1*Math.sin( 35*Math.PI/26), 0.9, -1*180/26, 1); // r1 12
-        updateStarPosition(1877, 1, "Virginia",       cx + r1*Math.cos(-13*Math.PI/26), cy - r1*Math.sin(-13*Math.PI/26), 0.9,  5*180/26, 1); // r1 13
-        updateStarPosition(1877, 1, "Rhode Island",   cx + r1*Math.cos( -9*Math.PI/26), cy - r1*Math.sin( -9*Math.PI/26), 0.9,  1*180/26, 1); // r1  1
-        updateStarPosition(1877, 1, "Kentucky",       cx + r1*Math.cos( -5*Math.PI/26), cy - r1*Math.sin( -5*Math.PI/26), 0.9, -3*180/26, 1); // r1  2
-        updateStarPosition(1877, 1, "Nebraska",       cx + r2*Math.cos( 35*Math.PI/20), cy - r2*Math.sin( 35*Math.PI/20), 0.9,  7*180/20, 1); // 		r2 13
-		updateStarPosition(1877, 1, "Oregon",         cx + r2*Math.cos( 37*Math.PI/20), cy - r2*Math.sin( 37*Math.PI/20), 0.9,  5*180/20, 1); // 		r2 14
+        updateStarPosition(1877, 3, "Indiana",        cx + r2*Math.cos( 21*Math.PI/20), cy - r2*Math.sin( 21*Math.PI/20), 0.9, -3*180/20, 1); // 		r2  6
+        updateStarPosition(1877, 3, "Louisiana",      cx + r2*Math.cos( 23*Math.PI/20), cy - r2*Math.sin( 23*Math.PI/20), 0.9, -5*180/20, 1); // 		r2  7
+        updateStarPosition(1877, 3, "Mississippi",    cx + r1*Math.cos( 35*Math.PI/26), cy - r1*Math.sin( 35*Math.PI/26), 0.9, -1*180/26, 1); // r1 12
+        updateStarPosition(1877, 3, "Virginia",       cx + r1*Math.cos(-13*Math.PI/26), cy - r1*Math.sin(-13*Math.PI/26), 0.9,  5*180/26, 1); // r1 13
+        updateStarPosition(1877, 3, "Rhode Island",   cx + r1*Math.cos( -9*Math.PI/26), cy - r1*Math.sin( -9*Math.PI/26), 0.9,  1*180/26, 1); // r1  1
+        updateStarPosition(1877, 3, "Kentucky",       cx + r1*Math.cos( -5*Math.PI/26), cy - r1*Math.sin( -5*Math.PI/26), 0.9, -3*180/26, 1); // r1  2
+        updateStarPosition(1877, 3, "Nebraska",       cx + r2*Math.cos( 35*Math.PI/20), cy - r2*Math.sin( 35*Math.PI/20), 0.9,  7*180/20, 1); // 		r2 13
+		updateStarPosition(1877, 3, "Oregon",         cx + r2*Math.cos( 37*Math.PI/20), cy - r2*Math.sin( 37*Math.PI/20), 0.9,  5*180/20, 1); // 		r2 14
         
-        updateStarPosition(1877, 1, "Ohio",           1*h_step, 4.5*v_step, 1, 0, 1);
-        updateStarPosition(1877, 1, "Tennessee",      cx + r2*Math.cos( 25*Math.PI/20), cy - r2*Math.sin( 25*Math.PI/20), 0.9, -7*180/20, 1); // 			r2  8
-        updateStarPosition(1877, 1, "Illinois",       cx + r2*Math.cos( 27*Math.PI/20), cy - r2*Math.sin( 27*Math.PI/20), 0.9, -1*180/20, 1); // 			r2  9
-        updateStarPosition(1877, 1, "Arkansas",       cx + r2*Math.cos( 29*Math.PI/20), cy - r2*Math.sin( 29*Math.PI/20), 0.9, -3*180/20, 1); // 			r2 10
-        updateStarPosition(1877, 1, "Florida",        cx + r2*Math.cos( 31*Math.PI/20), cy - r2*Math.sin( 31*Math.PI/20), 0.9,  3*180/20, 1); // 			r2 11
-        updateStarPosition(1877, 1, "Wisconsin",      cx + r2*Math.cos( 33*Math.PI/20), cy - r2*Math.sin( 33*Math.PI/20), 0.9,  1*180/20, 1); // 			r2 12
-        updateStarPosition(1877, 1, "California",     15*h_step, 4.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 3, "Ohio",           1*h_step, 4.5*v_step, 1, 0, 1);
+        updateStarPosition(1877, 3, "Tennessee",      cx + r2*Math.cos( 25*Math.PI/20), cy - r2*Math.sin( 25*Math.PI/20), 0.9, -7*180/20, 1); // 			r2  8
+        updateStarPosition(1877, 3, "Illinois",       cx + r2*Math.cos( 27*Math.PI/20), cy - r2*Math.sin( 27*Math.PI/20), 0.9, -1*180/20, 1); // 			r2  9
+        updateStarPosition(1877, 3, "Arkansas",       cx + r2*Math.cos( 29*Math.PI/20), cy - r2*Math.sin( 29*Math.PI/20), 0.9, -3*180/20, 1); // 			r2 10
+        updateStarPosition(1877, 3, "Florida",        cx + r2*Math.cos( 31*Math.PI/20), cy - r2*Math.sin( 31*Math.PI/20), 0.9,  3*180/20, 1); // 			r2 11
+        updateStarPosition(1877, 3, "Wisconsin",      cx + r2*Math.cos( 33*Math.PI/20), cy - r2*Math.sin( 33*Math.PI/20), 0.9,  1*180/20, 1); // 			r2 12
+        updateStarPosition(1877, 3, "California",     15*h_step, 4.5*v_step, 1, 0, 1);
     }
     
     buildFlag1890_43_1 = function() {
@@ -1987,7 +1995,7 @@ function run() {
                 .attr('font-weight', 'bold')
                 .attr('text-decoration', 'underline')
                 .attr('fill', 'blue')
-                .text('Show alternate flag')
+                .text('Show alternate flag (' + (num_versions - 1) + ')')
                 .on("click", function(){
                   console.log("Toggle")
                   toggle_flag(d.start)
