@@ -197,12 +197,12 @@ text {
 
 
   var slider_group = svg.append('g')
-                        .attr("transform", "translate(0, " + (flag_height + 20) + ")")
+                        .attr("transform", "translate(50, " + (flag_height + 20) + ")")
 
   var slider_height = 40
 
   var x_slider = d3.scale.linear()
-                 .range([50, flag_width -50])
+                 .range([0, flag_width -100])
                  .domain([1750, 2012])
 
   var slider_marker = slider_group.append('g')
@@ -228,7 +228,7 @@ text {
   slider_marker.node().appendChild(bottom_triangle.node())
 
   var slider_text = slider_marker.append('g')
-                      .attr('transform', "translate(0, " + (slider_height + 20) +")")
+                      .attr('transform', "translate(0, " + (slider_height + 30) +")")
 
   slider_text.append('rect')
       .attr('stroke', slider_marker_color)
@@ -297,21 +297,25 @@ text {
       .data(d3.range(1760, 2012, 10))
       .enter()
       .append('line')
-      .classed('tick')
+      .classed('tick', true)
       .attr('x1', x_slider)
       .attr('x2', x_slider)
       .attr('y1', slider_height)
       .attr('y2', slider_height + 10)
-      .attr('stroke', black)
+      .attr('stroke', 'black')
 
     slider_periods_group.selectAll('text')
       .data(d3.range(1760, 2012, 10))
       .enter()
       .append('text')
-      .classed('tick_text')
+      .classed('tick_text', true)
       .attr('x', x_slider)
-      .attr('y', slider_height + 30)
-      .attr('stroke', black)
+      .attr('y', slider_height + 20)
+      .attr('stroke', 'black')
+      .attr('font-size', 10)
+      .attr('text-anchor', 'middle')
+      .style('font-weight', 'lighter')
+      .text(String)
   })
   
   
@@ -2123,15 +2127,28 @@ function run() {
       return years[years.length-1];
   }
 
-  function flag_callback(year) {
-      if (year < years[0]) {flag_stars = star_data}
+  var current_version = 1;
+  function toggle_flag(year)
+  {
+    var precedingYear = findPrecedingYear(year);
+    var num_versions = alternate_versions[precedingYear]
+    flag_callback(year, current_version % num_versions + 1)
+  }
+
+
+
+  function flag_callback(year, version) {
+      if (version === undefined) version = 1
+      if (year < years[0]) {flag_stars = star_data; current_version = 1}
       else {
       var precedingYear = findPrecedingYear(year);
-      flag_stars = flags_data.filter(function(d) {
-                return d.year == precedingYear;
-            })[0].star_data;
-        }
-        console.log(precedingYear);
+      flag_data = flags_data.filter(function(d) {
+                return d.year === precedingYear && d.version === version;
+            })[0];
+      flag_stars = flag_data.star_data  
+      }
+
+        current_version = flag_data.version
           // Transitions
           stars.data(flag_stars)
           .transition()
