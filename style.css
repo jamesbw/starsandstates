@@ -32,8 +32,8 @@ body {
 #title {
 	text-transform: uppercase;
 	font-family: 'Yanone Kaffeesatz', Arial, sans-serif;
-	/*font-size: 72pt;*/
-	font-size: 64pt;
+	font-size: 72pt;
+/*	font-size: 64pt;*/
 	text-align: center;
 	color: white;
 	border-bottom: 1px solid white;
@@ -42,8 +42,8 @@ body {
 }
 
 #subtitle {
-	/*font-size: 20pt;*/
-	font-size: 16pt;
+	font-size: 20pt;
+/*	font-size: 16pt;*/
 	color: white;
 	text-align: center;
 	font-family: 'Rokkitt', Arial, sans-serif;
@@ -64,6 +64,20 @@ body {
 	/*margin-top: 30px;*/
 	margin-top: 0px;
 	height:150px;
+}
+
+#footer {
+	text-align: center;
+}
+
+#footer p {
+	font-size: 8pt;
+	text-align: center;
+	color: white;
+	border-top: 1px solid white;
+	display: inline-block;
+	text-shadow: 0 -2px #000;
+	margin-top: 6px;
 }
 
 
