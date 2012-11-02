@@ -1,80 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-
-<head>
-    <title>Stars &amp; States</title>
-    <link href="style.css" rel="stylesheet" type="text/css"/>
-    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700,300,200' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="d3.v2.min.js"></script>
-</head>
-	
-<body>
-<!--   <div id="svg-container"></div>
- -->
-
-	<div id="container" class="container center">
-		<div id="title-container">
-			<h1 id="title" class="">Stars &amp; States</h1>
-		</div>
-		<h3 id="subtitle">Evolution of the American flag and the states in the Union <br/>
-	from 1776 to today</h3>
-	
-		<div id="flag_container">
-		</div>
-		
-		<div id="slider_container">
-		</div>
-
- </div>
-
-
-<script>
 
   var albers_ratio = 960/500
-  var svg_width = 1180,
-      svg_height = 900;
-	  // Constant variables
-	  var flag_width = 940,
-	  flag_height = flag_width / 1.9,
-	  stripe_array = Array(13),
-	  stripe_h = flag_height/stripe_array.length,
-	  union_flag_h = stripe_h*7.,
-	  union_flag_w = flag_height*.76,
-	  star_r = stripe_h*1/125;
+  var svg_width = 1300,
+      svg_height = 900
+
 
 //Map setup
 //------------------------------------------------------
 
-  var map_width = flag_width * 2/3
+  var map_width = svg_width * 2/3
   var map_height = map_width / albers_ratio
-  var map_top_right = {x: flag_width * 10/27, y: flag_height*1/3}
+  var map_top_right = {x: 500, y: 200}
 
 
   var projection = d3.geo.albersUsa()
-      .scale(map_width)
+      .scale(map_width )
       .translate([0, 0]);
 
   var path = d3.geo.path()
       .projection(projection);
 
-  var svg_flag = d3.select("#flag_container").append("svg")
-      // .attr("width", svg_width)
-      // .attr("height", svg_height)
-
-	var svg_slider = d3.select("#slider_container").append("svg")
-	      // .attr("width", svg_width)
-	      // .attr("height", svg_height)
+  var svg = d3.select("#svg_container").append("svg")
+      .attr("width", svg_width)
+      .attr("height", svg_height)
 
 
-  // svg_flag.append("rect")
-  //     .attr("class", "background")
-  //     .attr("width", svg_width)
-  //     .attr("height", svg_height)
+  svg.append("rect")
+      .attr("class", "background")
+      .attr("width", svg_width)
+      .attr("height", svg_height)
 
-  var map_group = svg_flag.append("g")
+  var map_group = svg.append("g")
       .attr("transform", "translate(" + (map_width * 1/ 2 + map_top_right.x)+ "," + (map_height * 1/ 2 + map_top_right.y) + ")")
       .attr("id", "map")
   
@@ -118,11 +73,20 @@
   var flag_top_right = {x: 0 , y: 0}
 
 
-  var flag_group = svg_flag.append("g")
-      .attr("transform", "translate(" +  flag_top_right.x+ "," + flag_top_right.y + ")");
+  var flag_group = svg.append("g")
+      .attr("transform", "translate(" +  flag_top_right.x+ "," + flag_top_right.y + ")")
 
   // flag_group.parentNode.insertBefore(flag_group, flag_group.parentNode.firstChild)
   map_group.node().parentNode.appendChild(map_group.node())
+
+  // Constant variables
+  var flag_width = svg_width ,
+  flag_height = flag_width / 1.9,
+  stripe_array = Array(13),
+  stripe_h = flag_height/stripe_array.length,
+  union_flag_h = stripe_h*7.,
+  union_flag_w = flag_height*.76,
+  star_r = stripe_h*1/125;
 
 
   // Flag - Stripes
@@ -164,14 +128,14 @@
   //---------------------------------------------------------------------------------------
 
 
-  var slider_group = svg_slider.append('g')
-                        //.attr("transform", "translate(50, " + (flag_height + 20) + ")")
+  var slider_group = svg.append('g')
+                        .attr("transform", "translate(50, " + (flag_height + 20) + ")")
 
   var slider_height = 40
 
   var x_slider = d3.scale.linear()
-                 .range([0, 960])
-                 .domain([1755, 2015])
+                 .range([0, flag_width -100])
+                 .domain([1750, 2012])
 
   var slider_marker = slider_group.append('g')
   var slider_marker_color = '#cc0c2f'
@@ -229,7 +193,7 @@
     join_years = json
 
     var slider_data = []
-    slider_data.push({start: 1755, end: 1776, text:  ["Period:     - 1776",  "Still waiting for independence!"]})
+    slider_data.push({start: 1750, end: 1776, text:  ["Period:     - 1776",  "Still waiting for independence!"]})
     var state_counter = 0;
     for (var i = 1; i < join_years.length; i++) {
       var start =  join_years[i-1].year
@@ -243,7 +207,7 @@
                                // "States joining the union: " + new_states ,
                                "States in the Union: " + state_counter ]})
     };
-    slider_data.push({start: 1960, end: 2015, text: ["Period: 1960 -     ",
+    slider_data.push({start: 1960, end: 2012, text: ["Period: 1960 -     ",
                                // "States joining the union: " + new_states ,
                                "States in the Union: " + 50 ]})
     console.log(slider_data)
@@ -253,16 +217,16 @@
     .enter().append("rect")
     .attr('fill', function(d, i){  
       if (i%2===0)  
-        return '#ccc' 
+        return '#76BCB7' 
       else  
-        return '#888'})
+        return '#58ADA7'})
     .attr('x', function(d) { return x_slider(d.start)})
     .attr('y', 0)
     .attr('height', slider_height)
     .attr('width', function(d){return x_slider(d.end) - x_slider(d.start)})
 
     slider_periods_group.selectAll('line')
-      .data(d3.range(1760, 2015, 10))
+      .data(d3.range(1760, 2012, 10))
       .enter()
       .append('line')
       .classed('tick', true)
@@ -270,16 +234,16 @@
       .attr('x2', x_slider)
       .attr('y1', slider_height)
       .attr('y2', slider_height + 10)
-      .attr('stroke', 'white')
+      .attr('stroke', 'black')
 
     slider_periods_group.selectAll('text')
-      .data(d3.range(1760, 2015, 10))
+      .data(d3.range(1760, 2012, 10))
       .enter()
       .append('text')
       .classed('tick_text', true)
       .attr('x', x_slider)
       .attr('y', slider_height + 20)
-      .attr('stroke', '#ccc')
+      .attr('stroke', 'black')
       .attr('font-size', 10)
       .attr('text-anchor', 'middle')
       .style('font-weight', 'lighter')
@@ -387,16 +351,16 @@
         updateStarPosition(1776, 2, "Georgia",        cx + r*Math.cos( 5*Math.PI/6), cy - r*Math.sin( 5*Math.PI/6), 1, -2*180/6, 1); //  3
         updateStarPosition(1776, 2, "Connecticut",    cx + r*Math.cos( 1*Math.PI/6), cy - r*Math.sin( 1*Math.PI/6), 1,  2*180/6, 1); // 11
         
-        updateStarPosition(1776, 2, "Massachusetts",  cx - r                       , cy                           , 1, -1*180/12, 1); //  4
+        updateStarPosition(1776, 2, "Massachusetts",  cx - r                       , cy                           , 1, -3*180/6, 1); //  4
         updateStarPosition(1776, 2, "Maryland",       cx                           , cy                           , 1,        0, 1);
-        updateStarPosition(1776, 2, "South Carolina", cx + r                       , cy                           , 1,  1*180/12, 1); // 10
+        updateStarPosition(1776, 2, "South Carolina", cx + r                       , cy                           , 1,  3*180/6, 1); // 10
         
-        updateStarPosition(1776, 2, "New Hampshire",  cx + r*Math.cos(-5*Math.PI/6), cy - r*Math.sin(-5*Math.PI/6), 1, -4*180/15, 1); //  5
-        updateStarPosition(1776, 2, "Virginia",       cx + r*Math.cos(-1*Math.PI/6), cy - r*Math.sin(-1*Math.PI/6), 1,  4*180/15, 1); //  9
+        updateStarPosition(1776, 2, "New Hampshire",  cx + r*Math.cos(-5*Math.PI/6), cy - r*Math.sin(-5*Math.PI/6), 1, -4*180/6, 1); //  5
+        updateStarPosition(1776, 2, "Virginia",       cx + r*Math.cos(-1*Math.PI/6), cy - r*Math.sin(-1*Math.PI/6), 1,  4*180/6, 1); //  9
         
-        updateStarPosition(1776, 2, "New York",       cx + r*Math.cos(-4*Math.PI/6), cy - r*Math.sin(-4*Math.PI/6), 1, 22*180/60, 1); //  6 
-        updateStarPosition(1776, 2, "North Carolina", cx + r*Math.cos(-3*Math.PI/6), cy - r*Math.sin(-3*Math.PI/6), 1, -1*180/5, 1); //  7
-        updateStarPosition(1776, 2, "Rhode Island",   cx + r*Math.cos(-2*Math.PI/6), cy - r*Math.sin(-2*Math.PI/6), 1, -22*180/60, 1); //  8
+        updateStarPosition(1776, 2, "New York",       cx + r*Math.cos(-4*Math.PI/6), cy - r*Math.sin(-4*Math.PI/6), 1, -5*180/6, 1); //  6 
+        updateStarPosition(1776, 2, "North Carolina", cx + r*Math.cos(-3*Math.PI/6), cy - r*Math.sin(-3*Math.PI/6), 1, -6*180/6, 1); //  7
+        updateStarPosition(1776, 2, "Rhode Island",   cx + r*Math.cos(-2*Math.PI/6), cy - r*Math.sin(-2*Math.PI/6), 1,  5*180/6, 1); //  8
     };
     
     buildFlag1776_13_3 = function() {
@@ -411,16 +375,16 @@
         updateStarPosition(1776, 3, "Georgia",        cx + r*Math.cos(25*Math.PI/26), cy - r*Math.sin(25*Math.PI/26), 1,  -6*180/13, 1); //  4
         updateStarPosition(1776, 3, "Connecticut",    cx + r*Math.cos(57*Math.PI/26), cy - r*Math.sin(57*Math.PI/26), 1,   4*180/13, 1); // 12
         
-        updateStarPosition(1776, 3, "Massachusetts",  cx + r*Math.cos(29*Math.PI/26), cy - r*Math.sin(29*Math.PI/26), 1,  -3*180/13, 1); //  5
+        updateStarPosition(1776, 3, "Massachusetts",  cx + r*Math.cos(29*Math.PI/26), cy - r*Math.sin(29*Math.PI/26), 1,  -8*180/13, 1); //  5
         updateStarPosition(1776, 3, "Maryland",       cx + r*Math.cos(13*Math.PI/26), cy - r*Math.sin(13*Math.PI/26), 1,   0       , 1); //  1
-        updateStarPosition(1776, 3, "South Carolina", cx + r*Math.cos(53*Math.PI/26), cy - r*Math.sin(53*Math.PI/26), 1,   1*180/13, 1); // 11
+        updateStarPosition(1776, 3, "South Carolina", cx + r*Math.cos(53*Math.PI/26), cy - r*Math.sin(53*Math.PI/26), 1,   6*180/13, 1); // 11
         
-        updateStarPosition(1776, 3, "New Hampshire",  cx + r*Math.cos(33*Math.PI/26), cy - r*Math.sin(33*Math.PI/26), 1, -2*180/5, 1); //  6
-        updateStarPosition(1776, 3, "Virginia",       cx + r*Math.cos(49*Math.PI/26), cy - r*Math.sin(49*Math.PI/26), 1,   3*180/13, 1); // 10
+        updateStarPosition(1776, 3, "New Hampshire",  cx + r*Math.cos(33*Math.PI/26), cy - r*Math.sin(33*Math.PI/26), 1, -10*180/13, 1); //  6
+        updateStarPosition(1776, 3, "Virginia",       cx + r*Math.cos(49*Math.PI/26), cy - r*Math.sin(49*Math.PI/26), 1,   8*180/13, 1); // 10
         
-        updateStarPosition(1776, 3, "New York",       cx + r*Math.cos(37*Math.PI/26), cy - r*Math.sin(37*Math.PI/26), 1,  18*180/65, 1); //  7
-        updateStarPosition(1776, 3, "North Carolina", cx + r*Math.cos(41*Math.PI/26), cy - r*Math.sin(41*Math.PI/26), 1, -18*180/65, 1); //  8
-        updateStarPosition(1776, 3, "Rhode Island",   cx + r*Math.cos(45*Math.PI/26), cy - r*Math.sin(45*Math.PI/26), 1,  -28*180/65, 1); //  9
+        updateStarPosition(1776, 3, "New York",       cx + r*Math.cos(37*Math.PI/26), cy - r*Math.sin(37*Math.PI/26), 1, -12*180/13, 1); //  7
+        updateStarPosition(1776, 3, "North Carolina", cx + r*Math.cos(41*Math.PI/26), cy - r*Math.sin(41*Math.PI/26), 1,  12*180/13, 1); //  8
+        updateStarPosition(1776, 3, "Rhode Island",   cx + r*Math.cos(45*Math.PI/26), cy - r*Math.sin(45*Math.PI/26), 1,  10*180/13, 1); //  9
     };
     
     buildFlag1795_15_1 = function() {
@@ -1901,13 +1865,13 @@
 
 function run() {
 
-    year = 1757
+    year = 1752
 
     slider_periods_group.selectAll("rect")
       .on('click', function(d){ year = d.start; update()})
 
     var slider_drag = d3.behavior.drag().on("drag", function(d){
-      year = Math.max(1752, Math.min( 2015, Math.round(x_slider.invert(d3.event.x))))
+      year = Math.max(1752, Math.min( 2012, Math.round(x_slider.invert(d3.event.x))))
       update()
 
     });
@@ -1947,7 +1911,6 @@ function run() {
                 .attr('font-weight', 'bold')
                 .attr('text-decoration', 'underline')
                 .attr('fill', 'blue')
-                .attr('cursor', 'pointer')
                 .text('Show alternate flag (' + (num_versions - 1) + ')')
                 .on("click", function(){
                   console.log("Toggle")
@@ -1964,7 +1927,7 @@ function run() {
               
 
               slider_marker.attr("transform", "translate(" + x_slider(year) +",0)")
-              var correction = Math.max(x_slider(year) -  (x_slider(2015) - rect_width), 0);
+              var correction = Math.max(x_slider(year) -  (x_slider(2012) - rect_width), 0);
               slider_text.select("rect")
                 .attr('x', -correction)
               slider_text.selectAll('text')
@@ -1996,7 +1959,7 @@ function run() {
             year = past_periods[past_periods.length - 2].year
           }
           if (past_periods.length === 1) {
-            year = 1757
+            year = 1752
           }
           update();
           break;
@@ -2083,7 +2046,7 @@ function run() {
 
 
   // Drawing the stars
-  var stars = svg_flag.selectAll(".star")
+  var stars = svg.selectAll(".star")
   .data(star_data)
   .enter()
   .append("path")
@@ -2147,9 +2110,3 @@ function run() {
 }
 
 
-
-  </script>
-
-
-</body>
-</html>

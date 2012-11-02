@@ -1,0 +1,138 @@
+
+
+
+/* GENERAL SETTINGS
+---------------------------------------------------------------------------------------------------- */
+
+* {margin: 0; padding: 0;}
+
+body {
+	background: url('black_denim.png');
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 16px;
+}
+
+.clearfix {*zoom: 1;}
+.clearfix:before, .clearfix:after {display: table; content: "";}
+.clearfix:after {clear: both;}
+
+.center-text {text-align: center;}
+
+.center {margin: 0 auto;}
+
+.container {width: 960px; margin: 0 auto;}
+.container:before, .container:after {display: table; content: "";}
+.container:after {clear: both;}
+
+
+#title-container {
+	text-align: center;
+}
+
+#title {
+	text-transform: uppercase;
+	font-family: 'Yanone Kaffeesatz', Arial, sans-serif;
+	font-size: 72pt;
+	text-align: center;
+	color: white;
+	border-bottom: 1px solid white;
+	display: inline-block;
+	text-shadow: 0 -3px #000;
+}
+
+#subtitle {
+	font-size: 20pt;
+	color: white;
+	text-align: center;
+	font-family: 'Rokkitt', Arial, sans-serif;
+	font-weight: 400;
+	margin: 24px 0;
+	text-shadow: 0 -2px #000;
+}
+
+#flag_container {
+	border: double 6px #888;
+	outline: solid 4px #888;
+	width: 940px;
+	height: 494px;
+	padding: 4px;
+}
+
+#slider_container {
+	margin-top: 30px;
+}
+
+/*font-family: 'Six Caps', sans-serif;
+font-family: 'Yanone Kaffeesatz', sans-serif;
+font-family: 'Medula One', cursive;*/
+
+.yeah {
+	border: double 6px #888;
+	outline: solid 4px #888;
+	display: block;
+}
+
+
+
+
+
+
+.background {
+  fill: none;
+  pointer-events: all;
+}
+
+#states {
+  fill: #d2d6d6;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+#outline {
+  /*fill: #d2d6d6;*/
+  stroke: #fff;
+  stroke-width: 5px;
+}
+
+#states path {
+  opacity: 0.80;
+}
+
+#states path.past {
+  fill: #002c77;
+  opacity: 1;
+}
+
+#states path.new {
+  /*fill: #cc0c2f;*/
+/*  fill: #0052E0;*/
+	fill: #3881FF;
+  opacity: 1;
+}
+
+#states path.motion {
+  /*fill: #cc0c2f;*/
+/*  fill: #0052E0;*/
+	fill: #3881FF;
+  opacity: 1;
+}
+
+
+
+
+svg {
+  display: inline-block;
+}
+
+.star {
+  fill: white;
+  stroke: white;
+}
+
+.active {
+  fill: #ECEC93;
+}
+
+/*text {
+  font-family: Verdana;
+}*/
