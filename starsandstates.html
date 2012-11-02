@@ -1907,7 +1907,7 @@ function run() {
       .on('click', function(d){ year = d.start; update()})
 
     var slider_drag = d3.behavior.drag().on("drag", function(d){
-      year = Math.max(1752, Math.min( 2015, Math.round(x_slider.invert(d3.event.x))))
+      year = Math.max(1757, Math.min( 2014, Math.round(x_slider.invert(d3.event.x))))
       update()
 
     });
@@ -1921,7 +1921,7 @@ function run() {
     {
       var rect_width
       slider_periods_group.selectAll("rect")
-        .classed('active', function(d){ return  d.start <= year && d.end > year})
+        .classed('active', function(d){ return  d.start <= year && d.end > year })
         .each(function(d) { 
           if(d.start <= year && d.end > year) 
           {
@@ -2128,9 +2128,9 @@ function run() {
                 return d.year === precedingYear && d.version === version;
             })[0];
       flag_stars = flag_data.star_data  
+      current_version = flag_data.version
       }
 
-        current_version = flag_data.version
           // Transitions
           stars.data(flag_stars)
           .transition()
