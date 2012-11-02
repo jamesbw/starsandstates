@@ -2061,8 +2061,8 @@ function run() {
          .attr("transform", "")
          .each("end", function(){ 
           d3.select(this).classed("motion", false)
-                         .classed("new", function(d){ return states_for_this_year.indexOf(d.properties.name) > -1})
-                         .classed("past", function(d){ return states_for_this_year.indexOf(d.properties.name) < 0})
+                         // .classed("new", function(d){ return states_for_this_year.indexOf(d.properties.name) > -1})
+                         // .classed("past", function(d){ return states_for_this_year.indexOf(d.properties.name) < 0})
           })
 
       console.log(states_for_this_year) 
