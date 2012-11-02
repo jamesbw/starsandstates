@@ -253,7 +253,6 @@
     slider_data.push({start: 1960, end: 2015, text: ["Period: 1960 -     ",
                                // "States joining the union: " + new_states ,
                                "States in the Union: " + 50 ]})
-    console.log(slider_data)
 
     slider_periods_group.selectAll("rect")
     .data(slider_data)
@@ -332,7 +331,6 @@
 	function addAlternativeFlags() {
 		a = [[1776, 2], [1776, 3], [1837, 2], [1847, 2], [1859, 2], [1859, 3], [1867, 2], [1877, 2], [1877, 3]];
 		for (var i = 0; i < a.length ; i += 1) {
-			console.log(a[i][0]);
 			var s = new Array();
 	        s = deepCopy(star_data);
 			var n = new Object()
@@ -1957,7 +1955,6 @@ function run() {
                 .attr('cursor', 'pointer')
                 .text('Show alternate flag (' + (num_versions - 1) + ')')
                 .on("click", function(){
-                  console.log("Toggle")
                   toggle_flag(d.start)
                 })
               };
@@ -1994,10 +1991,8 @@ function run() {
 
     // Allow the arrow keys to change the displayed year.
     d3.select(window).on("keydown", function() {
-        console.log(d3.event.keyCode)
       switch (d3.event.keyCode) {
         case 37: {
-          console.log("left")
           var past_periods = join_years.filter( function(d) { return d.year <= year})
           if (past_periods.length > 1) {
             year = past_periods[past_periods.length - 2].year
@@ -2065,7 +2060,6 @@ function run() {
                          // .classed("past", function(d){ return states_for_this_year.indexOf(d.properties.name) < 0})
           })
 
-      console.log(states_for_this_year) 
       color_states(states_for_this_year, "new")
     }
 
