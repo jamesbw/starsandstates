@@ -1959,7 +1959,13 @@ function run() {
                 })
               };
 
-              rect_width =  d3.max(slider_text.selectAll("text")[0], function(el){return el.textLength.baseVal.value}) + 20
+              try {
+                rect_width =  d3.max(slider_text.selectAll("text")[0], function(el){return el.textLength.baseVal.value}) + 20
+                console.log(rect_width)
+              }
+              catch (err){
+                rect_width = 220
+              }
 
               slider_text.select("rect")
                 .attr('height', slider_text.selectAll("text")[0].length * 20)
