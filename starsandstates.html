@@ -2041,8 +2041,10 @@ function run() {
       current_states = states
 
 
-      color_states(past_states, "past")
+      // color_states(past_states, "past")
       color_states(new_states, "new")
+
+      color_states(current_states, "past")
 
       states_group.selectAll(".new")
        .classed("motion", true)
